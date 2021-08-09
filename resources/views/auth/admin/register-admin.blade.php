@@ -167,6 +167,11 @@
                                         {{--                                            @continue--}}
                                         {{--                                        @endif--}}
 
+
+
+                                        @if($us->user_created_by == null)
+                                          @continue
+                                        @endif
                                         @if($i++)@endif
                                         <tr>
                                             <td>{{$i}}</td>
