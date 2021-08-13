@@ -54,7 +54,9 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'asset_url' => env('ASSET_URL', 'http://192.168.2.10/amcro/public'),
+    // 'asset_url' => env('ASSET_URL', 'http://192.168.2.10/amcro/public'),
+    'asset_url' => env('ASSET_URL', null),
+
 //    'asset_url' => env('ASSET_URL', 'http://192.168.2.121/amhararadioro/public'),
 
     /*

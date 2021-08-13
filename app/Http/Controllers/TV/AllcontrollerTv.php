@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Tv;
+namespace App\Http\Controllers\TV;
 
 use App\Fmmelaya;
 use App\Fmprogram;

@@ -158,26 +158,23 @@
                                         <th>status</th>
                                         <th></th>
                                         <th></th>
-                                    </tr>
+                                    </TR>
                                     </thead>
                                     <tbody>
                                     @if($i = 0)@endif
                                     @foreach($users as $us)
-                                        {{--                                        @if($us->id == 5 || $us->id == 6 || $us->id == 1 || $us->id == 2  || $us->id == 8 || $us->id == 9 || $us->id == 10 || $us->id == 11)--}}
-                                        {{--                                            @continue--}}
-                                        {{--                                        @endif--}}
+                                        @if($us->user_created_by == null)
+                                            @continue
+                                        @endif
 
                                         @if($i++)@endif
                                         <tr>
                                             <td>{{$i}}</td>
                                             <td>{{$us->name}}</td>
                                             <td>{{$us->username}}</td>
-                                            <td>
-                                                {{$us->role->name}}
-                                            </td>
+                                            <td>{{$us->role->name}}</td>
                                             <td>{{$us->user_created_by}}</td>
-
-                                            @if($us->user_created_by != null)
+{{--                                            @if($us->user_created_by != null)--}}
                                                 <td>
                                                     @if($us->isActive == 0)
                                                         <form action="{{route('user-make-active',$us->id)}}" method="post">
@@ -203,7 +200,7 @@
                                                 <td><a href="{{route('user-delete-admin',$us->id)}}"
                                                        class="btn btn-danger btn-sm">delete</a>
                                                 </td>
-                                            @endif
+{{--                                            @endif--}}
 
                                         </tr>
                                     @endforeach

@@ -1,5 +1,7 @@
 <?php
 
+use App\Fmmelaya;
+use App\ProgramMeleya;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -11,6 +13,414 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $pid1 = Fmmelaya::create([
+            'name' => 'ስዓቱን ከኛ ጋር',
+            'yeteshete' => '0',
+        ]);
+        $pid2 = Fmmelaya::create([
+            'name' => 'ሄሎውአፍሪካ',
+            'yeteshete' => '0',
+        ]);
+        $pid3 = Fmmelaya::create([
+            'name' => 'ለምን',
+            'yeteshete' => '0',
+        ]);
+        $pid33 = Fmmelaya::create([
+            'name' => 'ሙዚቃና መረጃ ',
+            'yeteshete' => '0',
+        ]);
+        $pid4 = Fmmelaya::create([
+            'name' => 'ማለዳ ስፖርት',
+            'yeteshete' => '1',
+        ]);
+        $pid5 = Fmmelaya::create([
+            'name' => 'ምን እናማክርልዎ',
+            'yeteshete' => '0',
+        ]);
+        $pid6 = Fmmelaya::create([
+            'name' => 'ሴቶች',
+            'yeteshete' => '0',
+
+        ]);
+        $pid7 = Fmmelaya::create([
+            'name' => 'ስሙን',
+            'yeteshete' => '0',
+        ]);
+        $pid32 = Fmmelaya::create([
+            'name' => 'ስፖት',
+            'yeteshete' => '0',
+        ]);
+
+
+        $pid8 = Fmmelaya::create([
+            'name' => 'ቅዳሜ አመሻሽ',
+            'yeteshete' => '0',
+
+        ]);
+        $pid9 = Fmmelaya::create([
+            'name' => 'ባለቀለም ጨዋታ',
+            'yeteshete' => '1',
+        ]);
+        $pid10 = Fmmelaya::create([
+            'name' => 'ተመስጦ',
+            'yeteshete' => '0',
+
+        ]);
+        $pid11 = Fmmelaya::create([
+            'name' => 'ታዋቂወቻችንምንይላሉ',
+            'yeteshete' => '0',
+
+        ]);
+        $pid12 = Fmmelaya::create([
+            'name' => 'የህይወት ገፆች',
+            'yeteshete' => '1',
+
+        ]);
+        $pid13 = Fmmelaya::create([
+            'name' => 'የልጆች ጊዜ',
+            'yeteshete' => '0',
+
+        ]);
+        $pid14 = Fmmelaya::create([
+            'name' => 'የምዮ ዉለታ',
+            'yeteshete' => '0',
+
+        ]);
+        $pid15 = Fmmelaya::create([
+            'name' => 'የፍቅርተሞክሮ',
+            'yeteshete' => '0',
+        ]);
+        $pid16 = Fmmelaya::create([
+            'name' => 'የአባይዳርጨዋታ',
+            'yeteshete' => '0',
+        ]);
+        $pid17 = Fmmelaya::create([
+            'name' => 'ከፍጥረታትዓለም',
+            'yeteshete' => '0',
+        ]);
+        $pid18 = Fmmelaya::create([
+            'name' => 'ከእዉቀት ማዕድ',
+            'yeteshete' => '1',
+        ]);
+        $pid19 = Fmmelaya::create([
+            'name' => 'ከፍርድ መዛግብት',
+            'yeteshete' => '0',
+
+        ]);
+        $pid20 = Fmmelaya::create([
+            'name' => 'ከተሞቻችን',
+            'yeteshete' => '0',
+
+        ]);
+        $pid21 = Fmmelaya::create([
+            'name' => 'ኪንሩፋት',
+            'yeteshete' => '1',
+
+        ]);
+        $pid22 = Fmmelaya::create([
+            'name' => 'ከዓለምዙሪያ',
+            'yeteshete' => '0',
+
+        ]);
+        $pid23 = Fmmelaya::create([
+            'name' => 'ጥሩዓለም',
+            'yeteshete' => '0',
+
+
+        ]);
+        $pid24 = Fmmelaya::create([
+            'name' => 'ጥበበሙዳይ',
+            'yeteshete' => '0',
+
+        ]);
+        $pid25 = Fmmelaya::create([
+            'name' => 'ጊዜለወጣቶች',
+            'yeteshete' => '0',
+
+        ]);
+        $pid26 = Fmmelaya::create([
+            'name' => 'ወግ ስለተሸከርካሪ',
+            'yeteshete' => '1',
+        ]);
+        $pid27 = Fmmelaya::create([
+            'name' => 'እስኪ እንነጋገርበት',
+            'yeteshete' => '0',
+        ]);
+        $pid29 = Fmmelaya::create([
+            'name' => 'እኔ ለሀገሬ',
+            'yeteshete' => '0',
+        ]);
+        $pid30 = Fmmelaya::create([
+            'name' =>      'ዘዋሪዉ',
+            'yeteshete' => '0',
+        ]);
+        $pid31 = Fmmelaya::create([
+            'name' => 'ፋረም ራዲዮ',
+            'yeteshete' => '0',
+        ]);
+
+//        radio program id
+        $rpid0 = ProgramMeleya::create([
+            'name' => 'ሰዓቱን ከኛ ጋር',
+            'yeteshete' => '0',
+        ]);
+
+        $rpid1 = ProgramMeleya::create([
+            'name' => 'ዜና መጽሔት',
+            'yeteshete' => '0',
+        ]);
+
+        $rpid2 = ProgramMeleya::create([
+            'name' => 'ዜና ሙዳይ',
+            'yeteshete' => '0',
+        ]);
+        $rpid3 = ProgramMeleya::create([
+            'name' => 'ሀሳብ ለሀሳብ',
+            'yeteshete' => '0',
+        ]);
+        $rpid4 = ProgramMeleya::create([
+            'name' => 'ሁሌም ጤና',
+            'yeteshete' => '0',
+        ]);
+        $rpid5 = ProgramMeleya::create([
+            'name' => 'ልዩ ዝግጅት',
+            'yeteshete' => '0',
+        ]);
+        $rpid6 = ProgramMeleya::create([
+            'name' => 'ማህደር ልማት',
+            'yeteshete' => '0',
+        ]);
+        $rpid7 = ProgramMeleya::create([
+            'name' => 'ማህደር ስፖርት',
+            'yeteshete' => '1',
+        ]);
+        $rpid8 = ProgramMeleya::create([
+            'name' => 'ማህደረ ልማት',
+            'yeteshete' => '0',
+        ]);
+        $rpid9 = ProgramMeleya::create([
+            'name' => 'ማን እንዳገር',
+            'yeteshete' => '0',
+        ]);
+        $rpid10 = ProgramMeleya::create([
+
+            'name' => 'ማንን ያደንቃሉ',
+            'yeteshete' => '0',
+        ]);
+        $rpid11 = ProgramMeleya::create([
+            'name' => 'ምክረ ህግ',
+            'yeteshete' => '0',
+        ]);
+        $rpid12 = ProgramMeleya::create([
+            'name' => 'ምክር ቤት',
+            'yeteshete' => '1',
+        ]);
+        $rpid13 = ProgramMeleya::create([
+            'name' => 'ምን እናማክርልዎ',
+            'yeteshete' => '0',
+        ]);
+   /*     $rpid14 = ProgramMeleya::create([
+
+        ]);*/
+        $rpid15 = ProgramMeleya::create([
+            'name' => 'ሴቶች',
+            'yeteshete' => '0',
+        ]);
+        $rpid16 = ProgramMeleya::create([
+            'name' => 'ስፖርት መጽሄት',
+            'yeteshete' => '0',
+        ]);
+        $rpid17 = ProgramMeleya::create([
+            'name' => 'ስፖርት ቅምሻ',
+            'yeteshete' => '0',
+        ]);
+        $rpid18 = ProgramMeleya::create([
+            'name' => 'ስፖርት እንነጋገር',
+            'yeteshete' => '0',
+        ]);
+        $rpid19 = ProgramMeleya::create([
+            'name' => 'ቃላችንን እንጠብቅ',
+            'yeteshete' => '1',
+        ]);
+        $rpid20 = ProgramMeleya::create([
+            'name' => 'ቆየት ያሉ ሙዚቃዎች',
+            'yeteshete' => '0',
+        ]);
+        $rpid21 = ProgramMeleya::create([
+
+            'name' => 'ብሄረሰብ ቋንቋዎች /ህምጠኛ/',
+            'yeteshete' => '0',
+        ]);
+        $rpid22 = ProgramMeleya::create([
+            'name' => 'ብሄረሰብ ቋንቋዎች /ኦሮሞኛ/',
+            'yeteshete' => '0',
+
+        ]);
+        $rpid23 = ProgramMeleya::create([
+            'name' => 'ብሄረሰብ ቋንቋዎች /አዊኛ/',
+            'yeteshete' => '0',
+        ]);
+        $rpid24 = ProgramMeleya::create([
+            'name' => 'ብርቱዎቹ',
+            'yeteshete' => '0',
+        ]);
+        $rpid25 = ProgramMeleya::create([
+            'name' => 'አብረን እናረፋፍድ',
+            'yeteshete' => '0',
+        ]);
+        $rpid26 = ProgramMeleya::create([
+            'name' => 'አዲስ ስፖርት',
+            'yeteshete' => '1',
+        ]);
+        $rpid27 = ProgramMeleya::create([
+            'name' => 'አውደ ቅርስ/ ኤፍ ኤም',
+            'yeteshete' => '0',
+        ]);
+        $rpid28 = ProgramMeleya::create([
+            'name' => 'አግራሞት',
+            'yeteshete' => '0',
+        ]);
+        $rpid29 = ProgramMeleya::create([
+            'name' => 'እናት አትዮ',
+            'yeteshete' => '0',
+        ]);
+        $rpid30 = ProgramMeleya::create([
+            'name' => 'እይታ',
+            'yeteshete' => '0',
+        ]);
+        $rpid31 = ProgramMeleya::create([
+            'name' => 'እርካብ',
+            'yeteshete' => '1',
+        ]);
+        $rpid100 = ProgramMeleya::create([
+            'name' => 'እንግዳ',
+            'yeteshete' => '0',
+        ]);
+        $rpid32 = ProgramMeleya::create([
+            'name' => 'ከታሪክ ማህደር',
+            'yeteshete' => '0',
+        ]);
+        $rpid33 = ProgramMeleya::create([
+            'name' => 'ከፍርድ መዛግብት',
+            'yeteshete' => '0',
+        ]);
+        $rpid34 = ProgramMeleya::create([
+            'name' => 'ከዕውቀት ማዕዘ',
+            'yeteshete' => '0',
+
+        ]);
+        $rpid35 = ProgramMeleya::create([
+            'name' => 'ከእርሻ እስከ ጉርሻ',
+            'yeteshete' => '1',
+        ]);
+        $rpid36 = ProgramMeleya::create([
+            'name' => 'ካነበብኩት የወደድኩት',
+            'yeteshete' => '0',
+        ]);
+        $rpid37 = ProgramMeleya::create([
+            'name' => 'የህግ ጉዳይ',
+            'yeteshete' => '0',
+        ]);
+        $rpid38 = ProgramMeleya::create([
+            'name' => 'የልጆች ጊዜ ኮሮና',
+            'yeteshete' => '0',
+
+        ]);
+        $rpid39 = ProgramMeleya::create([
+            'name' => 'የስልክ ዘፈን ምርጫ',
+            'yeteshete' => '0',
+        ]);
+        $rpid40 = ProgramMeleya::create([
+            'name' => 'ያልተደመጡ ድምፆች',
+            'yeteshete' => '0',
+        ]);
+        $rpid2 = ProgramMeleya::create([
+            'name' => 'የኛ ቃና',
+            'yeteshete' => '0',
+        ]);
+        $rpid43 = ProgramMeleya::create([
+            'name' => 'የይቅርታ መድረክ',
+            'yeteshete' => '0',
+        ]);
+        $rpid44 = ProgramMeleya::create([
+            'name' => 'የህግ ጉዳይ',
+            'yeteshete' => '0',
+
+        ]);
+        $rpid45 = ProgramMeleya::create([
+            'name' => 'የወሳኝ ኩነት',
+            'yeteshete' => '1',
+        ]);
+        $rpid46 = ProgramMeleya::create([
+            'name' => 'የጋዜጠኞች ዕይታ',
+            'yeteshete' => '0',
+        ]);
+        $rpid47 = ProgramMeleya::create([
+            'name' => 'የአድማጮች መድረክ',
+            'yeteshete' => '0',
+        ]);
+        $rpid48 = ProgramMeleya::create([
+            'name' => 'ደወል',
+            'yeteshete' => '1',
+        ]);
+        $rpid49 = ProgramMeleya::create([
+            'name' => 'ድንቅ ተፈጥሮ',
+            'yeteshete' => '0',
+        ]);
+        $rpid50 = ProgramMeleya::create([
+            'name' => 'ተጠየቅ',
+            'yeteshete' => '0',
+        ]);
+        $rpid51 = ProgramMeleya::create([
+            'name' => 'GIZ /ከFM/ ውስን ሃብት',
+            'yeteshete' => '0',
+        ]);
+        $rpid52 = ProgramMeleya::create([
+            'name' => 'ፋርም',
+            'yeteshete' => '0',
+        ]);
+        $rpid53 = ProgramMeleya::create([
+            'name' => 'ጣና ስፖርት',
+            'yeteshete' => '0',
+
+        ]);
+        $rpid54 = ProgramMeleya::create([
+            'name' => 'ጥበበ ሙዳይ',
+            'yeteshete' => '0',
+        ]);
+        $rpid55 = ProgramMeleya::create([
+            'name' => 'ጥያቄና መልስ',
+            'yeteshete' => '1',
+
+        ]);
+        $rpid59 = ProgramMeleya::create([
+            'name' => 'ጥበበኞቻችን',
+            'yeteshete' => '0',
+        ]);
+        $rpid56 = ProgramMeleya::create([
+            'name' => 'ገቢያችን',
+            'yeteshete' => '0',
+        ]);
+        $rpid57 = ProgramMeleya::create([
+            'name' => 'ጉዳያችን /ዘጋቢ/',
+            'yeteshete' => '0',
+        ]);
+        $rpid57 = ProgramMeleya::create([
+            'name' => 'ጊዜ ለወጣቶች',
+            'yeteshete' => '0',
+        ]);
+        $rpid58 = ProgramMeleya::create([
+            'name' => 'ግብርናችን',
+            'yeteshete' => '1',
+        ]);
+
+        $rpid60 = ProgramMeleya::create([
+            'name' => 'ውሎ በአርሶደሮች ቀየ',
+            'yeteshete' => '0',
+        ]);
+
+
+
         $role = \App\Role::create([
             'name' => 'ሬዲዮ አዘጋጅ', // azegaj
         ]);
@@ -53,19 +463,6 @@ class UserSeeder extends Seeder
             'name' => 'የቴሌቪዥን ስርጭት ሱፐርቫይዘር', // ሱፐርቫይዘር
         ]);
 
-//        $tvpcontent = \App\Tvpcontent::create([
-//            'name' => 'chalie'
-//        ]);
-//        $tvpcontent1 = \App\Tvpcontent::create([
-//            'name' => 'abebeb'
-//        ]);
-//        $tvpcontent2 = \App\Tvpcontent::create([
-//            'name' => 'ketema'
-//        ]);
-//        $tvpcontent3 = \App\Tvpcontent::create([
-//            'name' => 'kombolcha'
-//        ]);
-
         $tvmitelalefbet = \App\Tvmitelalefbet::create([
             'name' => 'ጠዋት[12:00-6:00]',
 //            'tvpcontent_id' => $tvpcontent->id
@@ -83,95 +480,6 @@ class UserSeeder extends Seeder
             'name' => 'ሌሊት[6:00 - 12:00]',
 //            'tvpcontent_id' => $tvpcontent2->id
         ]);
-//
-// start comment
-//        $users = \App\User::create([
-//            'name' => 'Azegaji radio Abebe',
-////            'email' => 'azegajr@gmail.com',
-//            'username' => 'azegajr',
-//            'role_id' => $role->id,
-//
-//            'password' => Hash::make('adminadmin'),
-//        ]);
-//        $users2 = \App\User::create([
-//            'name' => 'editor radio zelalem',
-//            'role_id' => $role2->id,
-//            'username' => 'editorr',
-////            'email' => 'editorr@gmail.com',
-//            'password' => Hash::make('adminadmin'),
-//        ]);
-//
-//        $users3 = \App\User::create([
-//            'name' => 'television azegaj solomon ',
-//            'username' => 'tva',
-////            'email' => 'tva@gmail.com',
-//            'role_id' => $role3->id,
-//            'password' => Hash::make('adminadmin'),
-////            'gender' => 'Male'
-//        ]);
-//        $users4 = \App\User::create([
-//            'name' => 'television editor solomon ',
-//            'username' => 'tve',
-////            'email' => 'tve@gmail.com',
-//            'role_id' => $role4->id,
-//            'password' => Hash::make('adminadmin'),
-////            'gender' => 'Male'
-//        ]);
-//        $users5 = \App\User::create([
-//            'name' => 'fm azegaj solomon ',
-//            'username' => 'fma',
-////            'email' => 'fma@gmail.com',
-//            'role_id' => $role5->id,
-//            'password' => Hash::make('adminadmin'),
-////            'gender' => 'Male'
-//        ]);
-//        $users6 = \App\User::create([
-//            'name' => 'fm editor solomon ',
-//
-//            'username' => 'fme',
-////            'email' => 'fme@gmail.com',
-//            'role_id' => $role6->id,
-//            'password' => Hash::make('adminadmin'),
-////            'gender' => 'Male'
-//        ]);
-//        $users7 = \App\User::create([
-//            'name' => 'tv technician  ',
-//
-//            'username' => 'tvt',
-////            'email' => 'tvt@gmail.com',
-//            'role_id' => $role7->id,
-//            'password' => Hash::make('adminadmin'),
-////            'gender' => 'Male'
-//        ]);
-//        $users8 = \App\User::create([
-//            'name' => 'fm/radio technician ',
-//
-//            'username' => 'tfmr',
-////            'email' => 'tfmr@gmail.com',
-//            'role_id' => $role8->id,
-//            'password' => Hash::make('adminadmin'),
-////            'gender' => 'Male'
-//        ]);
-//        $users9 = \App\User::create([
-//            'name' => 'promotion  ባለሙያ',
-//
-//            'username' => 'promotion',
-////            'email' => 'pro@gmail.com',
-//            'role_id' => $role9->id,
-//            'password' => Hash::make('adminadmin'),
-////            'gender' => 'Male'
-//        ]);
-//        $users10 = \App\User::create([
-//            'name' => 'promotion1  ኃላፊ',
-//
-//            'username' => 'promotion1',
-////            'email' => 'pro@gmail.com',
-//            'role_id' => $role10->id,
-//            'password' => Hash::make('adminadmin'),
-////            'gender' => 'Male'
-//        ]);
-//
-
 
 //        end comment
         $users13 = \App\User::create([
@@ -236,35 +544,6 @@ class UserSeeder extends Seeder
             'name' => 'ባሕር ዳር ኤፍኤም'
         ]);
 
-//        $program1 = \App\Program::create([
-//            'program_meleya_id' => $program_meleyas2->id,
-//            'program_ken_id' =>$program_ken1->id,
-//            'today_date' => '20/02/2013',
-//            'program_mitelalefbet' => 'ቀን[6:00-12:00]',
-////            'program_m_time'=>'',
-//            'program_file' => 'tana feret 18/02/13',
-//            'program_yizet' => 'Before renaming a table, you should verify that any foreign key constraints on the table have an explicit name in your migration files instead of letting Laravel assign a convention based name. Otherwise, the foreign key constraint name will refer to the old table name.',
-//            'program_artayi' => 'Solomon',
-//            'program_azegagi' => 'Berihun',
-//            'program_minute' => '30:00',
-//            'is_artayi_check' => '0',
-//            'is_transmit' => '0'
-//
-//        ]);
-//        $program2 = \App\Program::create([
-//            'program_meleya_id' => $program_meleyas2->id,
-//            'program_ken_id' => $program_ken3->id,
-//            'today_date' => '20/02/2013',
-//            'program_mitelalefbet' => 'ጠዋት[12:00-6:00]',
-////            'program_m_time'=>'',
-//            'program_file' => 'Yesport Sew 18/02/13',
-//            'program_yizet' => 'To create a new database table, use the create method on the Schema facade. The create method accepts two arguments: the first is the name of the table, while the second is a Closure which receives a Blueprint object that may be used to define the new table:',
-//            'program_artayi' => 'Abel Solomon',
-//            'program_azegagi' => 'Dawit Tsiga',
-//            'program_minute' => '40:00',
-//            'is_artayi_check' => '0',
-//            'is_transmit' => '0'
-//
-//        ]);
+
     }
 }
