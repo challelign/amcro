@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
 
-                    @if(\Illuminate\Support\Facades\Auth::user()->role_id == 1 || \Illuminate\Support\Facades\Auth::user()->role_id == 2 || \Illuminate\Support\Facades\Auth::user()->role_id == 8)
+                    @if(\Illuminate\Support\Facades\Auth::user()->role_id == 1 || \Illuminate\Support\Facades\Auth::user()->role_id == 2 || \Illuminate\Support\Facades\Auth::user()->role_id == 8 || \Illuminate\Support\Facades\Auth::user()->role_id == 12)
 
                         <div class="text-center" style="color: red ;font-size: 30px">
                             <b>የአማራ ራዲዮ ፐሮግራሞች</b>

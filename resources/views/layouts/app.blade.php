@@ -658,7 +658,8 @@
                         {{--                        @auth()--}}
                         @if(\Illuminate\Support\Facades\Auth::user()->role_id == 1
                             || \Illuminate\Support\Facades\Auth::user()->role_id == 2
-                            || \Illuminate\Support\Facades\Auth::user()->role_id == 8)
+                            || \Illuminate\Support\Facades\Auth::user()->role_id == 8
+                            || \Illuminate\Support\Facades\Auth::user()->role_id == 12)
                             <div class="card-header" style="font-size: 15px">
                                 <b>የአማራ ሬዲዮ ፕሮግራሞች</b>
                             </div>
@@ -780,6 +781,27 @@
                         @endif
 
 
+                        @if(\Illuminate\Support\Facades\Auth::user()->role_id == 12)
+                            <div class="card-header" style="font-size: 15px">
+                                <a class="btn btn-warning collapsed" data-toggle="collapse"
+                                href="#collapseContent" role="button" aria-expanded="false"
+                                aria-controls="collapseContent">
+                                    <span class="if-collapsed" style="font-size: 15px"><b>+</b>ቴቪ</span>
+                                    <span class="if-not-collapsed" style="font-size: 15px"><b>-</b>ቴቪ</span></a>
+                            </div>
+                            <div class="collapse" id="collapseContent">
+                                @foreach($ken as $k)
+                                    <li class="list-group-item text-center px-0">
+                                        <a href="{{route('program-list-by-date-tv',$k->id)}}" type="submit"
+                                        class="btn btn-info " style="width: 70px;">
+                                            <b>{{$k->name}}</b>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </div>
+                        @endif
+
+
                         {{----}}
 
 
@@ -793,7 +815,7 @@
                     </div>
                     <div class="col-md-1 px-0">
                         {{--                        @auth()--}}
-                        @if(\Illuminate\Support\Facades\Auth::user()->role_id == 8)
+                        @if(\Illuminate\Support\Facades\Auth::user()->role_id == 8 || \Illuminate\Support\Facades\Auth::user()->role_id == 12)
                             <div class="card-header" style="font-size: 15px;color: red">
                                 <b>ባሕርዳር ኤፍኤም ፕሮግራሞች</b>
                             </div>

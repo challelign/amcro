@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Tv;
+namespace App\Http\Controllers\TV;
 
 use App\Http\Controllers\Controller;
 use App\Role;

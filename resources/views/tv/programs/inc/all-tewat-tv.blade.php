@@ -22,7 +22,8 @@
             <div class="col-md-12">
                 <div class="card">
                     @if(\Illuminate\Support\Facades\Auth::user()->role_id == 3 || \Illuminate\Support\Facades\Auth::user()->role_id == 4 || \Illuminate\Support\Facades\Auth::user()->role_id == 7
-                        || \Illuminate\Support\Facades\Auth::user()->role_id == 13)
+                        || \Illuminate\Support\Facades\Auth::user()->role_id == 13
+                        || \Illuminate\Support\Facades\Auth::user()->role_id == 12)
                         <div class="text-center" style="color: red ;font-size: 30px">
                             <b>የቴሌቪዥን ፐሮግራሞች</b>
                         </div>
@@ -200,7 +201,8 @@
 
                         @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '3'
                             || \Illuminate\Support\Facades\Auth::user()->role_id ==  '4'
-                            || \Illuminate\Support\Facades\Auth::user()->role_id ==  '13')
+                            || \Illuminate\Support\Facades\Auth::user()->role_id ==  '13'
+                            || \Illuminate\Support\Facades\Auth::user()->role_id == '12')
                             {{--for only tv mastawokiya--}}
                             <div class="col-md-12 panel-primary card-header border-info "
                                  style="color: #1f6fb2; font-size: 15px">

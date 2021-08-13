@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    @if(\Illuminate\Support\Facades\Auth::user()->role_id == 5 || \Illuminate\Support\Facades\Auth::user()->role_id == 6 || \Illuminate\Support\Facades\Auth::user()->role_id == 8)
+                    @if(\Illuminate\Support\Facades\Auth::user()->role_id == 5 || \Illuminate\Support\Facades\Auth::user()->role_id == 6 || \Illuminate\Support\Facades\Auth::user()->role_id == 8 || \Illuminate\Support\Facades\Auth::user()->role_id == 12)
                         <div class="text-center" style="color: red ;font-size: 30px">
                             <b>ባሕር ዳር ኤፍኤም ፐሮግራሞች</b>
                         </div>
