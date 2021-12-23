@@ -71,6 +71,11 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('/programs/{id}/program-list-by-date-mata', 'AllController@programListByDateMata')->name('program-list-by-date-mata')->middleware(['auth']);
     Route::get('/programs/{id}/program-list-by-date-lelit', 'AllController@programListByDateLelit')->name('program-list-by-date-lelit')->middleware(['auth']);
 
+    Route::post('/programs/{id}/program-list-by-date-tewat','AllController@updatePosition')->middleware(['auth']);
+    Route::post('/programs/{id}/program-list-by-date-ken','AllController@updatePosition')->middleware(['auth']);
+    Route::post('/programs/{id}/program-list-by-date-mata','AllController@updatePosition')->middleware(['auth']);
+    Route::post('/programs/{id}/program-list-by-date-lelit','AllController@updatePosition')->middleware(['auth']);
+
 
     Route::get('/programs/{id}/program-list-by-date-tewat-print', 'AllController@programListByDateTewatPrint')->name('program-list-by-date-tewat-print')->middleware(['auth']);
     Route::get('/programs/{id}/program-list-by-date-ken-print', 'AllController@programListByDateKenPrint')->name('program-list-by-date-ken-print')->middleware(['auth']);
@@ -210,6 +215,13 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 
 
 
+    Route::post('fm/programs/{id}/program-list-by-date-ken-fm','Fm\AllcontrollerFM@updatePositionFm')->middleware(['auth']);
+    Route::post('fm/programs/{id}/program-list-by-date-tewat-fm', 'Fm\AllcontrollerFM@updatePositionFm')->middleware(['auth']);
+    Route::post('fm/programs/{id}/program-list-by-date-mata-fm', 'Fm\AllcontrollerFM@updatePositionFm')->middleware(['auth', ]);
+    Route::post('fm/programs/{id}/program-list-by-date-lelit-fm', 'Fm\AllcontrollerFM@updatePositionFm')->middleware(['auth']);
+
+
+
 
 
     Route::get('fm/programs/{id}/program-list-by-date-tewat-print', 'Fm\AllcontrollerFM@programListByDateTewatPrintFm')->name('program-list-by-date-tewat-print-fm')->middleware(['auth']);
@@ -262,7 +274,10 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::get('tv/programs/{id}/program-list-by-date-mata-tv', 'Tv\AllcontrollerTv@programListByDateMataTv')->name('program-list-by-date-mata-tv')->middleware(['auth']);
     Route::get('tv/programs/{id}/program-list-by-date-lelit-tv', 'Tv\AllcontrollerTv@programListByDateLelitTv')->name('program-list-by-date-lelit-tv')->middleware(['auth']);
 
-
+    Route::post('tv/programs/{id}/program-list-by-date-tewat-tv', 'Tv\AllcontrollerTv@updatePositionTv')->middleware(['auth']);
+    Route::post('tv/programs/{id}/program-list-by-date-ken-tv', 'Tv\AllcontrollerTv@updatePositionTv')->middleware(['auth']);
+    Route::post('tv/programs/{id}/program-list-by-date-mata-tv', 'Tv\AllcontrollerTv@updatePositionTv')->middleware(['auth']);
+    Route::post('tv/programs/{id}/program-list-by-date-lelit-tv', 'Tv\AllcontrollerTv@updatePositionTv')->middleware(['auth']);
 
 
     Route::post('tv/programs/{id}/program-approve-all-tv', 'Tv\ProgramControllerTv@programApproveAllTv')->name('program-approve-all-tv')->middleware(['auth', 'isTv']);

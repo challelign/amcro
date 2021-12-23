@@ -21,7 +21,7 @@ class Mastawokia extends Model
         'program_ken_id', 'mastawokia_mitelalefbet', 'today_date',
         'mastawokia_tekuam', 'mastawokia_file', 'mastawokia_gize',
         'mastawokia_mitelalefbet_seat', 'mastawokia_diggmosh',
-        'mastawokia_Yetestenagedew_meten','user_id'
+        'mastawokia_Yetestenagedew_meten','user_id','position'
     ];
 
     public function programKen()

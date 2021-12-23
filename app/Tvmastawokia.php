@@ -11,7 +11,7 @@ class Tvmastawokia extends Model
         'mastawokia_tekuam', 'mastawokia_file', 'mastawokia_gize',
         'mastawokia_mitelalefbet_seat', 'mastawokia_diggmosh',
         'mastawokia_video_id',
-        'mastawokia_text',
+        'mastawokia_text','position',
         'user_id'
     ];
 
