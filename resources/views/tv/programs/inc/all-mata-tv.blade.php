@@ -20,6 +20,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
+                    <span id="result"></span>
                     @if(\Illuminate\Support\Facades\Auth::user()->role_id == 3 || \Illuminate\Support\Facades\Auth::user()->role_id == 4 || \Illuminate\Support\Facades\Auth::user()->role_id == 7
                         || \Illuminate\Support\Facades\Auth::user()->role_id ==  13
                         || \Illuminate\Support\Facades\Auth::user()->role_id == 12)
@@ -79,12 +80,12 @@
                                                 @endif
                                             </b>
                                             <hr>
-                        {{--                    @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '3')
-                                                <br> <b>
-                                                    እንዲተላለፍ የፈቀደው አስተባባሪ ወይም አርታኢ ሥም : {{auth()->user()->name}}
-                                                    ፊርማ…................................ቀን….......................
-                                                </b>
-                                            @endif--}}
+                                            {{--                    @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '3')
+                                                                    <br> <b>
+                                                                        እንዲተላለፍ የፈቀደው አስተባባሪ ወይም አርታኢ ሥም : {{auth()->user()->name}}
+                                                                        ፊርማ…................................ቀን….......................
+                                                                    </b>
+                                                                @endif--}}
                                             <b>{!! $pro->program_yizet !!}</b>
                                             @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '3' || \Illuminate\Support\Facades\Auth::user()->role_id ==  '4')
                                                 <div class="row">
@@ -120,7 +121,8 @@
                                                                     style="width: 110px">
                                                                 ተላልፏል ብለህ ላክ
                                                             </button>
-                                                            <h4 class="bg-danger text-center text-white">ያልተላለፈ ፕሮግራም ካለ የአስተያየት መስጫው ጋ ምክንያቱን መዝግብ</h4>
+                                                            <h4 class="bg-danger text-center text-white">ያልተላለፈ ፕሮግራም ካለ
+                                                                የአስተያየት መስጫው ጋ ምክንያቱን መዝግብ</h4>
 
                                                         @endif
                                                     </form>
@@ -181,7 +183,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <p class="text-center text-bold">
-                                                    እርግጠኛ ነህ ይህ ፐሮግራም ይሰረዝ  .?
+                                                    እርግጠኛ ነህ ይህ ፐሮግራም ይሰረዝ .?
                                                 </p>
                                             </div>
                                             <div class="modal-footer">
@@ -325,91 +327,97 @@
                             </TR>
                             </thead>
                             @if($i = 0)@endif
+                            <tbody id="tablecontents">
                             @foreach($mastawokiatv as $ms)
                                 @if($ms->program_ken_id == $ken->id && $ms->is_transmit == 0 && $ms->not_transmit == '0' &&
                                        $ms->mastawokia_mitelalefbet == 'ማታ[12:00-6:00]')
-                                    <tbody>
+
                                     @if($i++)@endif
-                                    @if(trim($ms->mastawokia_text != ''))
-                                        <td class="bg-info text-white">ቴ.ማ {{$i}}</td>
+                                    <tr class="row1" data-id="{{ $ms->id }}">
+                                        @if(trim($ms->mastawokia_text != ''))
+                                            <td style="cursor: move" class="bg-info text-white">ቴ.ማ {{$i}}</td>
+                                        @else
+                                            <td style="cursor: move">{{$i}}</td>
+                                        @endif
+                                        <td style="cursor: move"> {{$ms->today_date}}</td>
+                                        <td style="cursor: move">{{$ms->updated_at->diffForHumans()}} by {{$ms->updated_by}}</td>
+                                        <td style="cursor: move">{!!  $ms->mastawokia_mitelalefbet!!}</td>
+                                        <td style="cursor: move">{!!  $ms->programKen->name !!}</td>
+                                        <td>{!!  $ms->mastawokia_tekuam!!}</td>
+                                        <td>{!!  $ms->mastawokia_file!!}</td>
+                                        <td>{!!  $ms->mastawokia_video_id!!}</td>
+                                        <td>{!!  $ms->mastawokia_gize!!}</td>
+                                        <td>{!!  $ms->mastawokia_mitelalefbet_seat!!}</td>
+                                        <td>{!!  $ms->mastawokia_diggmosh!!}</td>
+                                        <td>{{$ms->user->name}}</td>
+                                        <td>{{$ms->artayi}}</td>
+                                        <td>{{$ms->supervisor}}</td>
+                                        @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '10' || \Illuminate\Support\Facades\Auth::user()->role_id ==  '9')
+                                            <td>
+                                                <a href="{{route('mastawokia-edit-tv',$ms->id)}}"
+                                                   class="btn-sm btn btn-info  my-2 "> አስተካክል </a>
 
-                                    @else
-                                        <td>{{$i}}</td>
-                                    @endif
-                                    <td> {{$ms->today_date}}</td>
-                                    <td>{{$ms->updated_at->diffForHumans()}} by {{$ms->updated_by}}</td>
-                                    <td>{!!  $ms->mastawokia_mitelalefbet!!}</td>
-                                    <td>{!!  $ms->programKen->name !!}</td>
-                                    <td>{!!  $ms->mastawokia_tekuam!!}</td>
-                                    <td>{!!  $ms->mastawokia_file!!}</td>
-                                    <td>{!!  $ms->mastawokia_video_id!!}</td>
-                                    <td>{!!  $ms->mastawokia_gize!!}</td>
-                                    <td>{!!  $ms->mastawokia_mitelalefbet_seat!!}</td>
-                                    <td>{!!  $ms->mastawokia_diggmosh!!}</td>
-                                    <td>{{$ms->user->name}}</td>
-                                    <td>{{$ms->artayi}}</td>
-                                    <td>{{$ms->supervisor}}</td>
-                                    @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '10' || \Illuminate\Support\Facades\Auth::user()->role_id ==  '9')
-                                        <td>
-                                            <a href="{{route('mastawokia-edit-tv',$ms->id)}}"
-                                               class="btn-sm btn btn-info  my-2 "> አስተካክል </a>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger btn-sm my-2"
+                                                        onclick="handelDeleteMastawokia({{$ms->id}})">
+                                                    ሰርዝ
+                                                </button>
+                                            </td>
+                                        @endif
+                                        @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '7')
+                                            <td>
+                                                <form action="{{route('mastawokia-approve-tech-tv',$ms->id)}}"
+                                                      method="post">
+                                                    @csrf
+                                                    @if($ms->is_transmit == '0' && $ms->is_artayi_check == '1' && $ms->not_transmit == '0' && $ms->is_supervisor == '1')
+                                                        <button type="submit" class="btn btn-primary btn-sm my-2"
+                                                                style="width: 110px">
+                                                            ተላልፏል ብለህ ላክ
+                                                        </button>
+                                                    @endif
+                                                </form>
+                                            </td>
 
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm my-2"
-                                                    onclick="handelDeleteMastawokia({{$ms->id}})">
-                                                ሰርዝ
-                                            </button>
-                                        </td>
-                                    @endif
-                                    @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '7')
-                                        <td>
-                                            <form action="{{route('mastawokia-approve-tech-tv',$ms->id)}}"
-                                                  method="post">
-                                                @csrf
-                                                @if($ms->is_transmit == '0' && $ms->is_artayi_check == '1' && $ms->not_transmit == '0' && $ms->is_supervisor == '1')
-                                                    <button type="submit" class="btn btn-primary btn-sm my-2"
-                                                            style="width: 110px">
-                                                        ተላልፏል ብለህ ላክ
-                                                    </button>
-                                                @endif
-                                            </form>
-                                        </td>
+                                            <td>
+                                                <form action="{{route('mastawokia-approve-tech-not-tv',$ms->id)}}"
+                                                      method="post">
+                                                    @csrf
+                                                    @if($ms->not_transmit == '0' && $ms->is_artayi_check == '1' && $ms->is_supervisor == '1')
+                                                        <button type="submit" class="btn btn-primary btn-sm my-2"
+                                                                style="width: 110px">
+                                                            አልተላለፈም ብለህ ላክ
+                                                        </button>
+                                                    @endif
+                                                </form>
+                                            </td>
 
-                                        <td>
-                                            <form action="{{route('mastawokia-approve-tech-not-tv',$ms->id)}}"
-                                                  method="post">
-                                                @csrf
-                                                @if($ms->not_transmit == '0' && $ms->is_artayi_check == '1' && $ms->is_supervisor == '1')
-                                                    <button type="submit" class="btn btn-primary btn-sm my-2"
-                                                            style="width: 110px">
-                                                        አልተላለፈም ብለህ ላክ
-                                                    </button>
-                                                @endif
-                                            </form>
-                                        </td>
+                                        @endif
 
-                                    @endif
-
-                                    @if(\Illuminate\Support\Facades\Auth::user()->role_id == 10 )
-                                        <td>
-                                            <form action="{{route('mastawokia-approve-artayi-tv',$ms->id)}}"
-                                                  method="post">
-                                                @csrf
-                                                @if($ms->is_artayi_check == 1)
-                                                    አጽድቀሀል
-                                                @else
-                                                    <button type="submit" class="btn btn-primary btn-sm my-2">
-                                                        አጽድቅ
-                                                    </button>
-                                                @endif
-                                            </form>
-                                        </td>
-                                    @endif
-                                    </tbody>
+                                        @if(\Illuminate\Support\Facades\Auth::user()->role_id == 10 )
+                                            <td>
+                                                <form action="{{route('mastawokia-approve-artayi-tv',$ms->id)}}"
+                                                      method="post">
+                                                    @csrf
+                                                    @if($ms->is_artayi_check == 1)
+                                                        አጽድቀሀል
+                                                    @else
+                                                        <button type="submit" class="btn btn-primary btn-sm my-2">
+                                                            አጽድቅ
+                                                        </button>
+                                                    @endif
+                                                </form>
+                                            </td>
+                                        @endif
+                                    </tr>
                                 @endif
                             @endforeach
+                            </tbody>
                         </table>
+                        <h5>Drag and Drop the table rows and
+                            <button class="btn btn-info"
+                                    onclick="window.location.reload()"><b>REFRESH</b></button>
+                        </h5>
                         @if($c = 0)@endif
                         @foreach($mastawokiatv as $ms)
                             @if($ms->program_ken_id == $ken->id && $ms->is_transmit == 0 && $ms->not_transmit == '0' &&
@@ -447,7 +455,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <p class="text-center text-bold">
-                                            እርግጠኛ ነህ ይህ ማስታወቂያ  ይሰረዝ  .?
+                                            እርግጠኛ ነህ ይህ ማስታወቂያ ይሰረዝ .?
                                         </p>
                                     </div>
                                     <div class="modal-footer">
@@ -526,5 +534,51 @@
             // console.log('deleting .' , form);
             $('#deleteModalMastawokia').modal('show')
         }
+    </script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('js/jquery-ui.css')}}">
+    <script type="text/javascript">
+        $(function () {
+            $('#tablecontents').sortable({
+                items: "tr",
+                cursor: 'move',
+                opacity: 0.6,
+                update: function () {
+                    sendOrderToServer();
+                }
+            });
+
+            function sendOrderToServer() {
+
+                var order = [];
+                $('tr.row1').each(function (index, element) {
+                    order.push({
+                        id: $(this).attr('data-id'),
+                        position: index + 1
+                    });
+                });
+
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "{{ url('tv/programs/{id}/program-list-by-date-mata-tv') }}",
+                    data: {
+                        order: order,
+                        _token: '{{csrf_token()}}'
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            $('#result').html('<div class="alert alert-success">' + response.message +
+                                '</div>');
+                            // alert(response.message) //Message come from controller
+                        } else {
+                            console.log(response);
+                        }
+                    }
+                });
+
+            }
+        });
+
     </script>
 @endsection

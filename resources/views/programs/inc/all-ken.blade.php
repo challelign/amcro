@@ -5,6 +5,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
+                    <span id="result"></span>
+
                     @if(\Illuminate\Support\Facades\Auth::user()->role_id == 1 || \Illuminate\Support\Facades\Auth::user()->role_id == 2 || \Illuminate\Support\Facades\Auth::user()->role_id == 8 || \Illuminate\Support\Facades\Auth::user()->role_id == 12)
 
                         <div class="text-center" style="color: red ;font-size: 30px">
@@ -506,71 +508,78 @@
                             </TR>
                             </thead>
                             @if($i = 0)@endif
+                            <tbody id="tablecontents">
                             @foreach($mastawokia as $ms)
                                 @if($ms->program_ken_id == $ken->id && $ms->is_transmit == 0 &&
                                        $ms->mastawokia_mitelalefbet == 'ቀን[6:00-12:00]')
-                                    <tbody>
                                     @if($i++)@endif
-                                    <td>{{$i}}</td>
-                                    <td> {{$ms->today_date}}</td>
-                                    <td>{{$ms->updated_at->diffForHumans()}} by {{$ms->updated_by}}</td>
+                                    <tr class="row1" data-id="{{ $ms->id }}">
 
-                                    <td>{!!  $ms->mastawokia_mitelalefbet!!}</td>
-                                    <td>{!!  $ms->programKen->name !!}</td>
-                                    <td>{!!  $ms->mastawokia_tekuam!!}</td>
-                                    <td>{!!  $ms->mastawokia_file!!}</td>
-                                    <td>{!!  $ms->mastawokia_gize!!}</td>
-                                    <td>{!!  $ms->mastawokia_mitelalefbet_seat!!}</td>
-                                    <td>{!!  $ms->mastawokia_diggmosh!!}</td>
-                                    <td>{{$ms->user->name}}</td>
+                                        <td style="cursor: move">{{$i}}</td>
+                                        <td style="cursor: move"> {{$ms->today_date}}</td>
+                                        <td style="cursor: move">{{$ms->updated_at->diffForHumans()}}
+                                            by {{$ms->updated_by}}</td>
 
-                                    @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '10' || \Illuminate\Support\Facades\Auth::user()->role_id ==  '9')
-                                        <td>
-                                            <a href="{{route('mastawokia-edit',$ms->id)}}"
-                                               class="btn-sm btn btn-info  my-2 "> አስተካክል </a>
+                                        <td style="cursor: move">{!!  $ms->mastawokia_mitelalefbet!!}</td>
+                                        <td>{!!  $ms->programKen->name !!}</td>
+                                        <td>{!!  $ms->mastawokia_tekuam!!}</td>
+                                        <td>{!!  $ms->mastawokia_file!!}</td>
+                                        <td>{!!  $ms->mastawokia_gize!!}</td>
+                                        <td>{!!  $ms->mastawokia_mitelalefbet_seat!!}</td>
+                                        <td>{!!  $ms->mastawokia_diggmosh!!}</td>
+                                        <td>{{$ms->user->name}}</td>
 
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm my-2"
-                                                    onclick="handelDeleteMastawokia({{$ms->id}})">
-                                                ሰርዝ
-                                            </button>
-                                        </td>
-                                    @endif
-                                    @if(\Illuminate\Support\Facades\Auth::user()->role_id == 10 )
-                                        <td>
-                                            <form action="{{route('mastawokia-approve-artayi',$ms->id)}}"
-                                                  method="post">
-                                                @csrf
-                                                @if($ms->is_artayi_check == 1)
-                                                    አጽድቀሀል
-                                                @else
-                                                    <button type="submit" class="btn btn-primary btn-sm my-2">
-                                                        አጽድቅ
-                                                    </button>
-                                                @endif
-                                            </form>
-                                        </td>
-                                    @endif
+                                        @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '10' || \Illuminate\Support\Facades\Auth::user()->role_id ==  '9')
+                                            <td>
+                                                <a href="{{route('mastawokia-edit',$ms->id)}}"
+                                                   class="btn-sm btn btn-info  my-2 "> አስተካክል </a>
+
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger btn-sm my-2"
+                                                        onclick="handelDeleteMastawokia({{$ms->id}})">
+                                                    ሰርዝ
+                                                </button>
+                                            </td>
+                                        @endif
+                                        @if(\Illuminate\Support\Facades\Auth::user()->role_id == 10 )
+                                            <td>
+                                                <form action="{{route('mastawokia-approve-artayi',$ms->id)}}"
+                                                      method="post">
+                                                    @csrf
+                                                    @if($ms->is_artayi_check == 1)
+                                                        አጽድቀሀል
+                                                    @else
+                                                        <button type="submit" class="btn btn-primary btn-sm my-2">
+                                                            አጽድቅ
+                                                        </button>
+                                                    @endif
+                                                </form>
+                                            </td>
+                                        @endif
 
 
 
-                                    {{--                                    <td>--}}
-                                    {{--                                        <a href="{{route('mastawokia-edit',$ms->id)}}"--}}
-                                    {{--                                           class="btn-sm btn btn-info  my-2 "> አስተካክል </a>--}}
-                                    {{--                                    </td>--}}
-                                    {{--                                    <td>--}}
-                                    {{--                                        <button class="btn btn-danger btn-sm my-2"--}}
-                                    {{--                                                onclick="handelDeleteMastawokia({{$ms->id}})">--}}
-                                    {{--                                            ሰርዝ--}}
-                                    {{--                                        </button>--}}
-                                    {{--                                    </td>--}}
+                                        {{--                                    <td>--}}
+                                        {{--                                        <a href="{{route('mastawokia-edit',$ms->id)}}"--}}
+                                        {{--                                           class="btn-sm btn btn-info  my-2 "> አስተካክል </a>--}}
+                                        {{--                                    </td>--}}
+                                        {{--                                    <td>--}}
+                                        {{--                                        <button class="btn btn-danger btn-sm my-2"--}}
+                                        {{--                                                onclick="handelDeleteMastawokia({{$ms->id}})">--}}
+                                        {{--                                            ሰርዝ--}}
+                                        {{--                                        </button>--}}
+                                        {{--                                    </td>--}}
+                                    </tr>
 
-                                    </tbody>
                                 @endif
                             @endforeach
+                            </tbody>
                         </table>
-
+                        <h5>Drag and Drop the table rows and
+                            <button class="btn btn-info"
+                                    onclick="window.location.reload()"><b>REFRESH</b></button>
+                        </h5>
                     @endif
                 </div>
 
@@ -713,5 +722,54 @@
                 }
             });
         }
+    </script>
+
+
+
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('js/jquery-ui.css')}}">
+    <script type="text/javascript">
+        $(function () {
+            $('#tablecontents').sortable({
+                items: "tr",
+                cursor: 'move',
+                opacity: 0.6,
+                update: function () {
+                    sendOrderToServer();
+                }
+            });
+
+            function sendOrderToServer() {
+
+                var order = [];
+                $('tr.row1').each(function (index, element) {
+                    order.push({
+                        id: $(this).attr('data-id'),
+                        position: index + 1
+                    });
+                });
+
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "{{ url('programs/1/program-list-by-date-ken') }}",
+                    data: {
+                        order: order,
+                        _token: '{{csrf_token()}}'
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            $('#result').html('<div class="alert alert-success">' + response.message +
+                                '</div>');
+                            // alert(response.message) //Message come from controller
+                        } else {
+                            console.log(response);
+                        }
+                    }
+                });
+
+            }
+        });
+
     </script>
 @endsection
