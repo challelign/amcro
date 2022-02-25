@@ -487,10 +487,10 @@
                                         {{--                                    {!! $mg->programKen->id !!}--}}
                                         {{--                                    {!! $mg->miraf->id !!}--}}
                                         @if(\Illuminate\Support\Facades\Auth::user()->role_id === 1)
-                                            <a href="{{route('merehagibr-create')}}"
-                                               class="btn btn-info btn-sm float-right">አስተካክል</a>
+                                        <a href="{{route('merehagibr-edit',$mg->id)}}"
+                                           class="btn btn-info btn-sm float-right">አስተካክል</a>
 
-                                        @endif
+                                    @endif
                                     @endif
                                 @endforeach
                             </div>
@@ -505,10 +505,10 @@
                                         {{--                                    {!! $mg->programKen->id !!}--}}
                                         {{--                                    {!! $mg->miraf->id !!}--}}
                                         @if(\Illuminate\Support\Facades\Auth::user()->role_id === 1)
-                                            <a href="{{route('merehagibr-create')}}"
-                                               class="btn btn-info btn-sm float-right">አስተካክል</a>
+                                        <a href="{{route('merehagibr-edit',$mg->id)}}"
+                                           class="btn btn-info btn-sm float-right">አስተካክል</a>
 
-                                        @endif
+                                    @endif
 
                                     @endif
                                 @endforeach
@@ -523,10 +523,10 @@
                                         {!! $mg->name !!}
                                         {{--                                    {!! $mg->programKen->id !!}--}}
                                         @if(\Illuminate\Support\Facades\Auth::user()->role_id === 1)
-                                            <a href="{{route('merehagibr-create')}}"
-                                               class="btn btn-info btn-sm float-right">አስተካክል </a>
+                                        <a href="{{route('merehagibr-edit',$mg->id)}}"
+                                           class="btn btn-info btn-sm float-right">አስተካክል</a>
 
-                                        @endif
+                                    @endif
                                     @endif
                                 @endforeach
                             </div>
