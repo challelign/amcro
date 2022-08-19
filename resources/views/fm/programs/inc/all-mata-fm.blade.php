@@ -527,6 +527,8 @@
                                         <TH>ድግግሞሽ መጠን</TH>
                                         {{--                                            <TH>የተስተናገደው መጠን</TH>--}}
                                         <th>ማስታወቂያ የመዘገበው</th>
+                                        <th>እንዲተላለፍ የፈቀደው</th>
+
                                     </TR>
                                     </thead>
                                     @if($i = 0)@endif
@@ -551,7 +553,7 @@
                                                 <td>{!!  $ms->mastawokia_diggmosh!!}</td>
                                                 {{--                                                <td>{!!  $ms->mastawokia_Yetestenagedew_meten!!}</td>--}}
                                                 <td>{!!  $ms->user->name!!}</td>
-
+                                                <td>{{$ms->artayi}}</td>
 
                                                 @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '10' || \Illuminate\Support\Facades\Auth::user()->role_id ==  '9')
                                                     <td>

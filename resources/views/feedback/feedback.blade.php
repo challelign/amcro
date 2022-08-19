@@ -232,7 +232,14 @@
                                                 <td style="font-size: 11px">{{$pro->program_mitelalefbet}}</td>
                                                 <td>{{$pro->feedback}}</td>
                                                 <td>{{$pro->feedback_category}}</td>
-                                                <td>{{$pro->user->name}}</td>
+                                                {{-- <td>{{$pro->user->name}} --}}
+                                                <td>
+                                                    @if(isset($pro->user->name))
+                                                    {{$pro->user->name}}
+                                                    @else
+
+                                                    @endif
+                                                </td>
                                                 @if( \Illuminate\Support\Facades\Auth::user()->role_id == 11)
                                                     <form action="{{route('feedback-delete',$pro->id)}}">
                                                         @csrf
