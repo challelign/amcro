@@ -64,7 +64,10 @@
 <body>
 <div id="app">
     @auth
-        <div class=" text-center" style="max-width: 100%;color: white;background-color: #b22222">
+        <div class=" text-center"
+         {{-- style="max-width: 100%;color: white;background-color: #f12711" --}}
+         style="max-width: 100%;color: white;background-image: linear-gradient(#fb8085,#f9c1b1)"
+         >
             <b style="font-size: 28px">የአማራ ሚዲያ ኮርፖሬሽን የዕለት ስርጭት ማስፈፀሚያ
                 መርሐ ግብር ሲስተም </b>
         </div>
@@ -74,7 +77,7 @@
 
     {{--    <nav class="navbar navbar-icon-top navbar-expand-lg navbar-expand-xl clearfix navbar-dark bg-dark" style="verflow: hidden;max-width: 100%;color: red">--}}
     <nav class="navbar navbar-expand-md container-fluid  navbar-light shadow-sm navbar-center justify-content-center"
-         style="text-align: center;font-size: 10px;background-color: #b22222">
+         style="text-align: center;font-size: 10px;background-color: #f94144">
 
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

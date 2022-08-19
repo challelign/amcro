@@ -13,7 +13,7 @@
                 <img src="{{asset('logo-image/amico.jpg')}}" alt="Avatar" style="width: 250px;height: 120px">
                 <div class="card">
                     <div  class="card-header text-center"
-                         style="font-size: 25px;color: white;background-color: #b22222">{{ __('ግ ባ') }}</div>
+                         style="font-size: 25px;color: white;background-color: #f94144">{{ __('ግ ባ') }}</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
