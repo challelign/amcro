@@ -41,7 +41,12 @@ class MastawokiaController extends Controller
         $program = Program::all();
         $ken = ProgramKen::all();
         $programmeleyaid = ProgramMeleya::all();
-        $mastawokia = Mastawokia::all();
+        // $mastawokia = Mastawokia::orderBy('created_at','desc')->paginate(10) ;
+        $mastawokia = Mastawokia::orderBy('created_at', 'desc')
+        ->where('is_transmit', 1)
+        ->where('not_transmit', 0)
+        ->where('is_artayi_check', 1)
+        ->orderBy('created_at', 'desc')->paginate(10);
         $prodate = $mastawokia->sortByDesc('today_date')->pluck('today_date')->unique();
         $proelet = $mastawokia->sortBy('mastawokia_mitelalefbet')->pluck('mastawokia_mitelalefbet')->unique();
         $proken = $ken->sortBy('id')->pluck('name')->unique();
@@ -63,7 +68,12 @@ class MastawokiaController extends Controller
         $program = Program::all();
         $ken = ProgramKen::all();
         $programmeleyaid = ProgramMeleya::all();
-        $mastawokia = Mastawokia::all();
+        // $mastawokia = Mastawokia::orderBy('created_at','desc')->paginate(10) ;
+        $mastawokia = Mastawokia::orderBy('created_at', 'desc')
+        ->where('is_transmit', 1)
+        ->where('not_transmit', 1)
+        ->where('is_artayi_check', 1)
+        ->orderBy('created_at', 'desc')->paginate(10);
         $prodate = $mastawokia->sortByDesc('today_date')->pluck('today_date')->unique();
         $proelet = $mastawokia->sortBy('mastawokia_mitelalefbet')->pluck('mastawokia_mitelalefbet')->unique();
         $proken = $ken->sortBy('id')->pluck('name')->unique();

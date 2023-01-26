@@ -268,7 +268,12 @@ class ProgramControllerFM extends Controller
 
     public function programListFm()
     {
-        $program = Fmprogram::all();
+        // $program = Fmprogram::all();
+        // $program = Fmprogram::orderBy('created_at', 'desc')->paginate(10);
+        $program = Fmprogram::orderBy('created_at', 'desc')
+        ->where('is_transmit', 1)
+        ->where('is_artayi_check', 1)
+       ->paginate(10);
         $ken = ProgramKen::all();
         $programmeleyaid = Fmmelaya::all();
         $prodate = $program->sortByDesc('today_date')->pluck('today_date')->unique();

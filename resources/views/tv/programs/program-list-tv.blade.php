@@ -107,6 +107,8 @@
 
 
                         </table>
+
+                        <div class="col-md-6"> {!! $program->links() !!}</div>
                     </div>
                 </div>
             </div>
@@ -128,8 +130,8 @@
            var table = $('#dataTableAdmin').DataTable({
                // 'pagingType': 'input',
                // 'pageLength': 5,
-               "aLengthMenu": [[3, 6, 9, -1], [3, 6, 9, "All"]],
-               "iDisplayLength": 3,
+            //    "aLengthMenu": [[3, 6, 9, -1], [3, 6, 9, "All"]],
+            //    "iDisplayLength": 3,
 
                 "order": [[ 0, 'desc' ], [ 1, 'desc' ]]
             });

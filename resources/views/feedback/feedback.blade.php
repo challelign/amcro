@@ -222,7 +222,7 @@
 
                                         <tbody>
                                         @if($i =0)@endif
-                                        @foreach($feedback as $pro)
+                                        @foreach($feedbacklist as $pro)
                                             @if($i ++)@endif
 
                                             <tr>
@@ -273,6 +273,7 @@
 
                                     </table>
 
+                                    <div class="col-md-6"> {{ $feedbacklist->links() }}</div>
 
                                 </div>
                             </div>

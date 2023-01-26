@@ -178,19 +178,28 @@ class AllcontrollerTv extends Controller
     }
     public function programListTv()
     {
-        $program = Tvprogram::all();
-        $ken = ProgramKen::all();
-        $programmeleyaid = Fmmelaya::all();
-        $prodate = $program->sortByDesc('today_date')->pluck('today_date')->unique();
-        $proelet = $program->sortBy('program_mitelalefbet')->pluck('program_mitelalefbet')->unique();
-        $proken = $ken->sortBy('id')->pluck('name')->unique();
+        // $program = Tvprogram::all();
+        // $ken = ProgramKen::all();
+        // $programmeleyaid = Fmmelaya::all();
+        // $prodate = $program->sortByDesc('today_date')->pluck('today_date')->unique();
+        // $proelet = $program->sortBy('program_mitelalefbet')->pluck('program_mitelalefbet')->unique();
+        // $proken = $ken->sortBy('id')->pluck('name')->unique();
 
-        return view('tv.programs.program-list-tv', compact('program', 'ken', 'programmeleyaid', 'proelet', 'prodate', 'proken'));
-//        return view('programs.program-list')
+        // return view('tv.programs.program-list-tv', compact('program', 'ken', 'programmeleyaid', 'proelet', 'prodate', 'proken'));
 
 
-//            ->with('program', Program::all()->sortByDesc('id'))
-//            ->with('ken', ProgramKen::all())
-//            ->with('programmeleyaid', ProgramMeleya::all());
+
+
+        $program = Tvprogram::orderBy('created_at', 'desc')->where('is_transmit', 1)
+        ->where('is_artayi_check', 1)
+        ->orderBy('created_at', 'desc')->paginate(5);
+         $ken = ProgramKen::all();
+         $programmeleyaid = Fmmelaya::all();
+         $prodate = Tvprogram::all()->sortByDesc('created_at')->pluck('today_date')->unique();
+         $proelet = Tvprogram::all()->sortBy('program_mitelalefbet')->pluck('program_mitelalefbet')->unique();
+         $proken = $ken->sortBy('id')->pluck('name')->unique();
+
+         return view('tv.programs.program-list-tv', compact('program', 'ken', 'programmeleyaid', 'proelet', 'prodate', 'proken'));
+
     }
 }

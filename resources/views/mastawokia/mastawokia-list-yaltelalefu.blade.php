@@ -106,6 +106,8 @@
                             </tr>
                             </tfoot>
                         </table>
+                        <div class="col-md-6"> {{ $mastawokia->links() }}</div>
+
                     </div>
                 </div>
             </div>

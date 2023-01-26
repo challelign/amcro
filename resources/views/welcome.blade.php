@@ -67,9 +67,14 @@
 </header>
 <!-- Footer-->
 <footer class="bg-light py-4">
-    <div class="container">
-        <div class="small text-center text-muted">Copyright © 2013 - Challelign Tilahun</div>
-    </div>
+    <footer class="page-footer panel-footer font-weight-bold blue">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">Copyright © 2013 -
+            <a href=""> Developed by Challelign Tilahun </a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
 </footer>
 <!-- Bootstrap core JS-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

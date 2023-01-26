@@ -230,7 +230,13 @@ class MastawokiaControllerTv extends Controller
         $program = Tvprogram::all();
         $ken = ProgramKen::all();
         $programmeleyaid = Tvmitelalefbet::all();
-        $mastawokiatv = Tvmastawokia::all();
+        $mastawokiatv = Tvmastawokia::
+        orderBy('created_at', 'desc')
+        ->where('is_transmit', 1)
+        ->where('not_transmit', 0)
+        ->where('is_artayi_check', 1)
+        ->orderBy('created_at', 'desc')->paginate(10);
+
         $prodate = $mastawokiatv->sortByDesc('today_date')->pluck('today_date')->unique();
         $proelet = $mastawokiatv->sortBy('mastawokia_mitelalefbet')->pluck('mastawokia_mitelalefbet')->unique();
         $proken = $ken->sortBy('id')->pluck('name')->unique();
@@ -243,7 +249,11 @@ class MastawokiaControllerTv extends Controller
         $program = Tvprogram::all();
         $ken = ProgramKen::all();
         $programmeleyaid = Tvmitelalefbet::all();
-        $mastawokiatv = Tvmastawokia::all();
+        $mastawokiatv = Tvmastawokia::orderBy('created_at', 'desc')
+        ->where('is_transmit', 1)
+        ->where('not_transmit', 1)
+        ->where('is_artayi_check', 1)
+        ->orderBy('created_at', 'desc')->paginate(10);
         $prodate = $mastawokiatv->sortByDesc('today_date')->pluck('today_date')->unique();
         $proelet = $mastawokiatv->sortBy('mastawokia_mitelalefbet')->pluck('mastawokia_mitelalefbet')->unique();
         $proken = $ken->sortBy('id')->pluck('name')->unique();

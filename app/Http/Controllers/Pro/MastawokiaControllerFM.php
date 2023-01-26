@@ -41,9 +41,15 @@ class MastawokiaControllerFM extends Controller
     public function mastawokiaListFm()
     {
         $program = Fmprogram::all();
+        // $mastawokiafm = Fmmastawokia::orderBy('created_at','desc')->paginate(10) ;
+        $mastawokiafm = Fmmastawokia::orderBy('created_at', 'desc')
+        ->where('is_transmit', 1)
+        ->where('not_transmit', 0)
+        ->where('is_artayi_check', 1)
+        ->orderBy('created_at', 'desc')->paginate(10);
         $ken = ProgramKen::all();
         $programmeleyaid = Fmmelaya::all();
-        $mastawokiafm = Fmmastawokia::all();
+        // $mastawokiafm = Fmmastawokia::all();
         $prodate = $mastawokiafm->sortByDesc('today_date')->pluck('today_date')->unique();
         $proelet = $mastawokiafm->sortBy('mastawokia_mitelalefbet')->pluck('mastawokia_mitelalefbet')->unique();
         $proken = $ken->sortBy('id')->pluck('name')->unique();
@@ -56,7 +62,13 @@ class MastawokiaControllerFM extends Controller
         $program = Fmprogram::all();
         $ken = ProgramKen::all();
         $programmeleyaid = Fmmelaya::all();
-        $mastawokiafm = Fmmastawokia::all();
+        // $mastawokiafm = Fmmastawokia::all();
+        $mastawokiafm = Fmmastawokia::orderBy('created_at', 'desc')
+        ->where('is_transmit', 1)
+        ->where('not_transmit', 1)
+        ->where('is_artayi_check', 1)
+        ->orderBy('created_at', 'desc')->paginate(10);
+
         $prodate = $mastawokiafm->sortByDesc('today_date')->pluck('today_date')->unique();
         $proelet = $mastawokiafm->sortBy('mastawokia_mitelalefbet')->pluck('mastawokia_mitelalefbet')->unique();
         $proken = $ken->sortBy('id')->pluck('name')->unique();

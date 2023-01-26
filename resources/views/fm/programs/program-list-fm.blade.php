@@ -120,6 +120,8 @@
 
 
                         </table>
+                        <div class="col-md-6"> {{ $program->links() }}</div>
+
                     </div>
                 </div>
             </div>

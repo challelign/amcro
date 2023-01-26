@@ -15,7 +15,7 @@
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped table-responsive form-group"
-                               id="dataTableAdmin">
+                               id="dataTableAdmin" style="width:100%;margin-bottom: 3em;">
                             {{--                            @csrf--}}
                             <thead class="table-bordered text-center table-info">
                             <tr>
@@ -117,6 +117,8 @@
                             </tr>
                             </tfoot>
                         </table>
+                        <div class="col-md-6"> {{ $mastawokiatv->links() }}</div>
+
                     </div>
                 </div>
             </div>

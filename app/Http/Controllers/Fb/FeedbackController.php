@@ -14,16 +14,25 @@ class FeedbackController extends Controller
 //        if (auth()->user()->role_id == '8' || auth()->user()->role_id == '7') {
 
 
-        $feedback = Feedback::all();
-//        $ken = ProgramKen::all();
-//        $programmeleyaid = Fmmelaya::all();
-        $feddate = $feedback->sortByDesc('today_date')->pluck('today_date')->unique();
-        $fedken = $feedback->sortByDesc('program_ken')->pluck('program_ken')->unique();
-        $feedcategory = $feedback->sortByDesc('feedback_category')->pluck('feedback_category')->unique();
-        $fedmeleya = $feedback->sortBy('program_mitelalefbet')->pluck('program_mitelalefbet')->unique();
+//         $feedback = Feedback::all();
+// //        $ken = ProgramKen::all();
+// //        $programmeleyaid = Fmmelaya::all();
+//         $feddate = $feedback->sortByDesc('today_date')->pluck('today_date')->unique();
+//         $fedken = $feedback->sortByDesc('program_ken')->pluck('program_ken')->unique();
+//         $feedcategory = $feedback->sortByDesc('feedback_category')->pluck('feedback_category')->unique();
+//         $fedmeleya = $feedback->sortBy('program_mitelalefbet')->pluck('program_mitelalefbet')->unique();
 
 
-        return view('feedback.feedback', compact('feedback', 'fedmeleya', 'feddate', 'fedken', 'feedcategory'));
+        // return view('feedback.feedback', compact('feedback', 'fedmeleya', 'feddate', 'fedken', 'feedcategory'));
+
+
+        $feedbacklist = Feedback::orderBy('created_at', 'desc')->paginate(10);
+        $feddate = Feedback::all()->sortByDesc('today_date')->pluck('today_date')->unique();
+        $fedken = Feedback::all()->sortByDesc('program_ken')->pluck('program_ken')->unique();
+        $feedcategory = Feedback::all()->sortByDesc('feedback_category')->pluck('feedback_category')->unique();
+        $fedmeleya = Feedback::all()->sortBy('program_mitelalefbet')->pluck('program_mitelalefbet')->unique();
+        return view('feedback.feedback', compact('feedbacklist', 'fedmeleya', 'feddate', 'fedken', 'feedcategory'));
+
 
 //        return view('feedback.feedback')
 //                ->with('ken', ProgramKen::all())
@@ -72,16 +81,16 @@ class FeedbackController extends Controller
 
     public function feedBackList()
     {
-        $feedback = Feedback::all();
+        // $feedback = Feedback::paginate(5);
 //        $ken = ProgramKen::all();
 //        $programmeleyaid = Fmmelaya::all();
-        $feddate = $feedback->sortByDesc('today_date')->pluck('today_date')->unique();
-        $fedken = $feedback->sortByDesc('program_ken')->pluck('program_ken')->unique();
-        $feedcategory = $feedback->sortByDesc('feedback_category')->pluck('feedback_category')->unique();
-        $fedmeleya = $feedback->sortBy('program_mitelalefbet')->pluck('program_mitelalefbet')->unique();
+        $feddate = Feedback::all()->sortByDesc('today_date')->pluck('today_date')->unique();
+        $fedken = Feedback::all()->sortByDesc('program_ken')->pluck('program_ken')->unique();
+        $feedcategory = Feedback::all()->sortByDesc('feedback_category')->pluck('feedback_category')->unique();
+        $fedmeleya = Feedback::all()->sortBy('program_mitelalefbet')->pluck('program_mitelalefbet')->unique();
 //        $proken = $ken->sortBy('id')->pluck('name')->unique();
 
-        return view('feedback.feedback', compact('feedback', 'fedmeleya', 'feddate', 'fedken', 'feedcategory'));
+        return view('feedback.feedback', compact( 'fedmeleya', 'feddate', 'fedken', 'feedcategory'));
 
 
     }
