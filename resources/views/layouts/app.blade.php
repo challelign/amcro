@@ -196,6 +196,29 @@
                                    style="text-align: center ;color: white">|ተጠቃሚ መዝግብ| </a>
                             </li>
                         @endif
+
+
+
+
+                        <li class="nav-item dropdown  hcolor  py-1 ">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle  hcolor  px-1" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
+                               style=" text-align: center ;color: white ; padding-top: 0px">
+                                 |ማስታወቂያዎችን መዝግብ|
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" style="background-color: red"
+                                 aria-labelledby="navbarDropdown">
+                                <a href="{{route('mastawokia-create-tv')}}" class="dropdown-item hcolor  px-1"
+                                   style=" text-align: center ;color: white">|ቴቪ ማስታወቂያ ጨምር| </a>
+                                <a href="{{route('mastawokia-create')}}" class="dropdown-item hcolor  px-1"
+                                   style=" text-align: center ;color: white">|ራዲዮ ማስታወቂያ ጨምር| </a>
+                                <a href="{{route('mastawokia-create-fm')}}" class="dropdown-item hcolor  px-1"
+                                   style=" text-align: center ;color: white">|ኤፍኤም ማስታወቂያ ጨምር| </a>
+                            </div>
+                        </li>
+
+{{--
+
                         <li>
                             <a href="{{route('mastawokia-create-tv')}}" class="dropdown-item hcolor  px-1"
                                style=" text-align: center ;color: white">|ቴቪ ማስታወቂያ ጨምር| </a>
@@ -209,6 +232,9 @@
                             <a href="{{route('mastawokia-create-fm')}}" class="dropdown-item hcolor  px-1"
                                style=" text-align: center ;color: white">|ኤፍኤም ማስታወቂያ ጨምር| </a>
                         </li>
+--}}
+
+
 
 
                         <li class="nav-item dropdown  hcolor  py-1 ">

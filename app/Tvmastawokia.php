@@ -12,7 +12,7 @@ class Tvmastawokia extends Model
         'mastawokia_mitelalefbet_seat', 'mastawokia_diggmosh',
         'mastawokia_video_id',
         'mastawokia_text','position',
-        'user_id'
+        'user_id','tvmall'
     ];
 
     public function programKen()

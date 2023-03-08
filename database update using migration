@@ -1,0 +1,21 @@
+Microsoft Windows [Version 10.0.22621.963]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\xampp\htdocs\amcro>php artisan make:migration add_fmmall_to_fmmastawokias_table
+Created Migration: 2023_02_01_084754_add_fmmall_to_fmmastawokias_table
+
+C:\xampp\htdocs\amcro>php artisan make:migration add_rmall_to_mastawokias_table
+Created Migration: 2023_02_01_084946_add_rmall_to_mastawokias_table
+
+C:\xampp\htdocs\amcro>php artisan make:migration add_tvmall_to_tvmastawokias_table
+Created Migration: 2023_02_01_085013_add_tvmall_to_tvmastawokias_table
+
+C:\xampp\htdocs\amcro>php artisan migrate
+Migrating: 2023_02_01_084754_add_fmmall_to_fmmastawokias_table
+Migrated:  2023_02_01_084754_add_fmmall_to_fmmastawokias_table (0.18 seconds)
+Migrating: 2023_02_01_084946_add_rmall_to_mastawokias_table
+Migrated:  2023_02_01_084946_add_rmall_to_mastawokias_table (0.09 seconds)
+Migrating: 2023_02_01_085013_add_tvmall_to_tvmastawokias_table
+Migrated:  2023_02_01_085013_add_tvmall_to_tvmastawokias_table (0.09 seconds)
+
+C:\xampp\htdocs\amcro>

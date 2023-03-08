@@ -262,4 +262,122 @@ class MastawokiaControllerTv extends Controller
     }
 
 
+
+
+
+    public function mastawokiaCreateFormNewTv(){
+        if (auth()->user()->role_id == '2' || auth()->user()->role_id == '1' || auth()->user()->role_id == '8') {
+            session()->flash('error', "You are not Allowed to Access this page ፡፡  ");
+            return redirect()->back();
+        }
+        return view('tv.mastawokia.mastawokia-create-formnew-tv')
+            ->with('program', Tvprogram::all())
+            ->with('ken', ProgramKen::all())
+            ->with('programmeleyaid', Tvmitelalefbet::all());
+    }
+
+    public function mastawokiaSaveFormNewTv(Request $request){
+
+        $request->validate([
+            'program_ken_id' => 'required',
+            'mastawokia_mitelalefbet' => 'required',
+            'today_date' => 'required',
+            'tvmall' => 'required',
+        ]);
+
+/*
+                'program_ken_id' => 'required',
+                'mastawokia_mitelalefbet' => 'required',
+                'today_date' => 'required',
+                'mastawokia_tekuam.*' => 'required',
+                'mastawokia_file.*' => 'required',
+                'mastawokia_gize.*' => 'required',
+                'mastawokia_mitelalefbet_seat.*' => 'required',
+                'mastawokia_diggmosh.*' => 'required',
+                'mastawokia_video_id.*' => 'required',
+        */
+
+
+        $mastawokiatv = new Tvmastawokia;
+        $mastawokiatv->program_ken_id = $request->program_ken_id;
+        $mastawokiatv->mastawokia_mitelalefbet = $request->mastawokia_mitelalefbet;
+        $mastawokiatv->today_date = $request->today_date;
+        $mastawokiatv->tvmall = $request->tvmall;
+        $mastawokiatv->user_id = auth()->user()->id;
+
+
+        $mastawokiatv->mastawokia_tekuam = 0;
+        $mastawokiatv->mastawokia_video_id = 0;
+        $mastawokiatv->mastawokia_file = 0;
+        $mastawokiatv->mastawokia_gize = 0;
+        $mastawokiatv->mastawokia_mitelalefbet_seat = 0;
+        $mastawokiatv->mastawokia_diggmosh = 0;
+        $mastawokiatv-> created_at = \Carbon\Carbon::now();
+        $mastawokiatv-> updated_at = \Carbon\Carbon::now();
+        $mastawokiatv->save();
+
+
+        return response()->json([
+            'success' => 'የዛሬ ቀን ማስታወቂያ መዝግበሃል  ፡ ማስተካክለ ከፈለግህ በመዘገብኸው ቀን መርጠህ ኤዲት አርግ .'
+        ]);
+
+    }
+
+    public function mastawokiaEditFmFormNewUpdate($id)
+    {
+        $mastawokiatv = Tvmastawokia::find($id);
+        if ((auth()->user()->role_id == '2' || auth()->user()->role_id == '9') && $mastawokiatv->is_artayi_check == '1') {
+            session()->flash('error', "ማስታወቂያ ማስተካክል አትችልም ፡ ፕሮግራም አርታኢ  አጽድቆታል  ፡፡  ");
+            return redirect()->back();
+        }
+        return view('fm.mastawokia.mastawokia-edit-fm-formupdate')
+            ->with('ken', ProgramKen::all())
+            ->with('mastawokia', $mastawokiatv)
+            ->with('program', Tvprogram::all()->where('program_ken_id', $id))
+            ->with('programmeleyaid', Tvmitelalefbet::all());
+
+    }
+
+
+
+    public function mastawokiaUpdateFmFormNewSave(Request $request, $id){
+
+//        dd($id);
+        $mastawokiatv = Tvmastawokia::findorfail($id);
+        $request->validate([
+            'program_ken_id' => 'required',
+            'mastawokia_mitelalefbet' => 'required',
+            'today_date' => 'required',
+            'tvmall' => 'required',
+        ]);
+
+        $mastawokiatv->program_ken_id = $request->program_ken_id;
+        $mastawokiatv->mastawokia_mitelalefbet = $request->mastawokia_mitelalefbet;
+        $mastawokiatv->today_date = $request->today_date;
+        $mastawokiatv->updated_by = auth()->user()->name;
+        $mastawokiatv->tvmall = $request->tvmall;
+
+
+        $mastawokiatv->mastawokia_tekuam = 0;
+        $mastawokiatv->mastawokia_file = 0;
+        $mastawokiatv->mastawokia_gize = 0;
+        $mastawokiatv->mastawokia_mitelalefbet_seat = 0;
+        $mastawokiatv->mastawokia_diggmosh = 0;
+        $mastawokiatv-> created_at = \Carbon\Carbon::now();
+        $mastawokiatv-> updated_at = \Carbon\Carbon::now();
+
+
+        $mastawokiatv->save();
+        session()->flash('success', "ባሕር ዳር ኤፍኤም ማስታወቂያ አስተካክለህ  መዝግበሀል ፡፡  ");
+        return redirect(route('program-list-by-date-fm', $mastawokiatv->program_ken_id));
+    }
+
+
+
+
+
+
+
+
+
 }

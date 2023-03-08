@@ -82,6 +82,129 @@ class MastawokiaController extends Controller
     }
 
 
+
+
+
+    public function mastawokiaCreateFormNewRadio(){
+        if (auth()->user()->role_id == '2' || auth()->user()->role_id == '1' || auth()->user()->role_id == '8') {
+            session()->flash('error', "You are not Allowed to Access this page ፡፡  ");
+            return redirect()->back();
+        }
+        return view('mastawokia.mastawokia-create-formnew-radio')
+            ->with('program', Program::all())
+            ->with('ken', ProgramKen::all())
+            ->with('programmeleyaid', ProgramMeleya::all());
+    }
+
+    public function mastawokiaSaveFormNewRadio(Request $request){
+
+        $request->validate([
+            'program_ken_id' => 'required',
+            'mastawokia_mitelalefbet' => 'required',
+            'today_date' => 'required',
+            'rmall' => 'required',
+        ]);
+
+
+        $mastawokia = new Mastawokia;
+        $mastawokia->program_ken_id = $request->program_ken_id;
+        $mastawokia->mastawokia_mitelalefbet = $request->mastawokia_mitelalefbet;
+        $mastawokia->today_date = $request->today_date;
+        $mastawokia->rmall = $request->rmall;
+        $mastawokia->user_id = auth()->user()->id;
+
+
+        $mastawokia->mastawokia_tekuam = 0;
+        $mastawokia->mastawokia_file = 0;
+        $mastawokia->mastawokia_gize = 0;
+        $mastawokia->mastawokia_mitelalefbet_seat = 0;
+        $mastawokia->mastawokia_diggmosh = 0;
+        $mastawokia-> created_at = \Carbon\Carbon::now();
+        $mastawokia-> updated_at = \Carbon\Carbon::now();
+        $mastawokia->save();
+
+
+        return response()->json([
+            'success' => 'የዛሬ ቀን ማስታወቂያ መዝግበሃል  ፡ ማስተካክለ ከፈለግህ በመዘገብኸው ቀን መርጠህ ኤዲት አርግ .'
+        ]);
+
+    }
+
+    public function mastawokiaEditRFormNewUpdate($id)
+    {
+        $mastawokia = Mastawokia::find($id);
+        if ((auth()->user()->role_id == '2' || auth()->user()->role_id == '9') && $mastawokia->is_artayi_check == '1') {
+            session()->flash('error', "ማስታወቂያ ማስተካክል አትችልም ፡ ፕሮግራም አርታኢ  አጽድቆታል  ፡፡  ");
+            return redirect()->back();
+        }
+        return view('mastawokia.mastawokia-edit-r-formupdate')
+            ->with('ken', ProgramKen::all())
+            ->with('mastawokia', $mastawokia)
+            ->with('mereja', Mereja::all())
+            ->with('program', Program::all()->where('program_ken_id', $id))
+            ->with('programmeleyaid', ProgramMeleya::all());
+
+    }
+
+
+
+    public function mastawokiaUpdateRFormNewSave(Request $request, $id){
+
+//        dd($id);
+        $mastawokia = Mastawokia::findorfail($id);
+        $request->validate([
+            'program_ken_id' => 'required',
+            'mastawokia_mitelalefbet' => 'required',
+            'today_date' => 'required',
+            'rmall' => 'required',
+        ]);
+
+        $mastawokia->program_ken_id = $request->program_ken_id;
+        $mastawokia->mastawokia_mitelalefbet = $request->mastawokia_mitelalefbet;
+        $mastawokia->today_date = $request->today_date;
+        $mastawokia->updated_by = auth()->user()->name;
+        $mastawokia->rmall = $request->rmall;
+//        $mastawokia->user_id = auth()->user()->id;
+
+
+        $mastawokia->mastawokia_tekuam = 0;
+        $mastawokia->mastawokia_file = 0;
+        $mastawokia->mastawokia_gize = 0;
+        $mastawokia->mastawokia_mitelalefbet_seat = 0;
+        $mastawokia->mastawokia_diggmosh = 0;
+        $mastawokia-> created_at = \Carbon\Carbon::now();
+        $mastawokia-> updated_at = \Carbon\Carbon::now();
+
+
+        $mastawokia->save();
+        session()->flash('success', "የአማራ ራዲዮ  ማስታወቂያ አስተካክለህ  መዝግበሀል ፡፡  ");
+        return redirect(route('program-list-by-date', $mastawokia->program_ken_id));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function mastawokiaSave(Request $request)
     {
 

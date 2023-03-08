@@ -345,6 +345,39 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::post('tv/programs/{id}/program-approve-supervisor-tv', 'Tv\ProgramControllerTv@programApproveSupervisor')->name('program-approve-supervisor-tv')->middleware(['auth', 'isSuper']);
     Route::post('tv/mastawokia/{id}/mastawokia-approve-supervisor-tv', 'Pro\MastawokiaControllerTv@mastawokiaApprovesupervisorTv')->name('mastawokia-approve-supervisor-tv')->middleware(['auth', 'isSuper']);
 
+
+
+
+
+
+
+
+
+    Route::get('fm/mastawokia/mastawokia-create-formnew-fm', 'Pro\MastawokiaControllerFM@mastawokiaCreateFormNewFm')->name('mastawokia-create-formnew-fm')->middleware(['auth', 'isPromotion']);
+    Route::post('fm/mastawokia/mastawokia-save-formnew-fm', 'Pro\MastawokiaControllerFM@mastawokiaSaveFormNewFm')->name('mastawokia-save-formnew-fm')->middleware(['auth', 'isPromotion']);
+    Route::get('fm/mastawokia/{id}/mastawokia-edit-fm-formupdate', 'Pro\MastawokiaControllerFM@mastawokiaEditFmFormNewUpdate')->name('mastawokia-edit-fm-formupdate')->middleware(['auth', 'isPromotion']);
+    Route::post('fm/mastawokia/{id}/mastawokia-update-fm-formnewsave', 'Pro\MastawokiaControllerFM@mastawokiaUpdateFmFormNewSave')->name('mastawokia-update-fm-formnewsave')->middleware(['auth', 'isPromotion']);
+
+
+    Route::get('/mastawokia/mastawokia-create-formnew-radio', 'MastawokiaController@mastawokiaCreateFormNewRadio')->name('mastawokia-create-formnew-radio')->middleware(['auth', 'isPromotion']);
+    Route::post('/mastawokia/mastawokia-save-formnew-radio', 'MastawokiaController@mastawokiaSaveFormNewRadio')->name('mastawokia-save-formnew-radio')->middleware(['auth', 'isPromotion']);
+    Route::get('mastawokia/{id}/mastawokia-edit-r-formupdate', 'MastawokiaController@mastawokiaEditRFormNewUpdate')->name('mastawokia-edit-r-formupdate')->middleware(['auth', 'isPromotion']);
+    Route::post('mastawokia/{id}/mastawokia-update-r-formnewsave', 'MastawokiaController@mastawokiaUpdateRFormNewSave')->name('mastawokia-update-r-formnewsave')->middleware(['auth', 'isPromotion']);
+
+
+
+
+    Route::get('tv/mastawokia/mastawokia-create-formnew-tv', 'Pro\MastawokiaControllerTv@mastawokiaCreateFormNewTv')->name('mastawokia-create-formnew-tv')->middleware(['auth', 'isPromotion']);
+    Route::post('tv/mastawokia/mastawokia-save-formnew-tv', 'Pro\MastawokiaControllerTv@mastawokiaSaveFormNewTv')->name('mastawokia-save-formnew-tv')->middleware(['auth', 'isPromotion']);
+    Route::get('tv/mastawokia/{id}/mastawokia-edit-tv-formupdate', 'Pro\MastawokiaControllerTv@mastawokiaEditTvFormNewUpdate')->name('mastawokia-edit-tv-formupdate')->middleware(['auth', 'isPromotion']);
+    Route::post('tv/mastawokia/{id}/mastawokia-update-tv-formnewsave', 'Pro\MastawokiaControllerTv@mastawokiaUpdateTvFormNewSave')->name('mastawokia-update-tv-formnewsave')->middleware(['auth', 'isPromotion']);
+
+
+
+
+
+
+
 });
 
 

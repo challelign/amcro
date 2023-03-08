@@ -297,10 +297,10 @@ class ProgramController extends Controller
     {
         // $program = Program::paginate(10) ;
         // $program = Program::orderBy('created_at','desc')->paginate(10) ;
-        $program = Program::orderBy('created_at', 'desc')
+        $program = Program::all()
         ->where('is_transmit', 1)
-        ->where('is_artayi_check', 1)
-       ->paginate(10);
+        ->where('is_artayi_check', 1);
+       // ->paginate(10);
         $ken = ProgramKen::all();
         $programmeleyaid = ProgramMeleya::all();
         $prodate = $program->sortByDesc('today_date')->pluck('today_date')->unique();

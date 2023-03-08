@@ -424,7 +424,105 @@
                                     <p class="text-center"> ማስታወቂያ የለም </p>
                                 </div>
                             @else
-                                <table class="table table-bordered table-striped table-responsive form-group"
+
+
+
+                                    {{--if $ms->mastawokia_tekuam == 0 &&  $ms->mastawokia_file == 0 && $ms->mastawokia_gize == 0 && $ms->fmmall != null--}}
+                                    @foreach($mastawokia as $ms)
+                                        @if($ms->program_ken_id == $ken->id && $ms->is_transmit == 0
+                                            &&   $ms->mastawokia_mitelalefbet == 'ጠዋት[12:00-6:00]')
+                                            @if( $ms->mastawokia_tekuam == 0 &&  $ms->mastawokia_file == 0 && $ms->mastawokia_gize == 0 && $ms->rmall != null)
+                                                <div
+                                                    class="card-body table-bordered table-striped table-responsive form-group"
+                                                    id="user_table">
+                                                    <br>
+                                                    <b>ማስታወቂያው ሚተላለፍበት ቀን እና ዕለቱ {{$ms->today_date}}
+                                                        ፣{{$ms->programKen->name}}
+                                                        ከ {!!  $ms->mastawokia_mitelalefbet!!}</b>
+                                                    <p> Updated @ {{$ms->updated_at->diffForHumans()}}
+                                                        by {{$ms->updated_by}}</p>
+                                                    <p> ማስታወቂያውን የመዘገበው ሰም ፡{{$ms->user->name}}</p>
+
+                                                    @if($ms->artayi == null)
+                                                        <h4 class="bg-danger text-white">
+                                                            የማስታወቂያው ኃላፊ አላረጋገጠውም ገና በሒደት ላይ ነው
+                                                        </h4>
+                                                    @else
+                                                        <h4>ማስታወቂያውን ያረጋገጠው ሰም ፡ {{$ms->artayi}}</h4>
+                                                    @endif
+                                                    <b>{!! $ms->rmall !!}</b>
+
+                                                    <div class="row">
+                                                        @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '10' ||\Illuminate\Support\Facades\Auth::user()->role_id == 9)
+
+                                                            <div class="col-md-3">
+                                                                <a href="{{route('mastawokia-edit-r-formupdate',$ms->id)}}"
+                                                                   class="btn-sm btn btn-info  my-2 "> አስተካክል </a>
+                                                                <button class="btn btn-danger btn-sm my-2"
+                                                                        onclick="handelDeleteMastawokia({{$ms->id}})">
+                                                                    ሰርዝ
+                                                                </button>
+                                                            </div>
+
+                                                        @endif
+                                                        @if(\Illuminate\Support\Facades\Auth::user()->role_id == 10 )
+                                                            <div class="col-md-2">
+                                                                <form action="{{route('mastawokia-approve-artayi',$ms->id)}}"
+                                                                      method="post">
+                                                                    @csrf
+                                                                    @if($ms->is_artayi_check == 1)
+                                                                        አጽድቀሀል
+                                                                    @else
+                                                                        <button type="submit"
+                                                                                class="btn btn-primary btn-sm my-2 px-2">
+                                                                            አጽድቅ
+                                                                        </button>
+                                                                    @endif
+                                                                </form>
+                                                            </div>
+                                                        @endif
+                                                        @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '8')
+                                                            <div class="col-md-9 row">
+                                                                <div class="col-md-3">
+                                                                    <form action="{{route('mastawokia-approve-tech',$ms->id)}}"
+                                                                          method="post">
+                                                                        @csrf
+                                                                        @if($ms->is_transmit == '0' && $ms->is_artayi_check == '1' && $ms->not_transmit == '0')
+                                                                            <button type="submit" class="btn btn-primary btn-sm my-2">
+                                                                                ተላልፏል ብለህ ላክ
+                                                                            </button>
+                                                                        @endif
+                                                                    </form>
+
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <form action="{{route('mastawokia-approve-tech-not',$ms->id)}}"
+                                                                          method="post">
+                                                                        @csrf
+                                                                        @if($ms->is_artayi_check == '1' && $ms->not_transmit == '0')
+                                                                            <button type="submit" class="btn btn-primary btn-sm my-2">
+                                                                                አልተላለፈም ብለህ ላክ
+                                                                            </button>
+                                                                        @endif
+                                                                    </form>
+                                                                </div>
+                                                                <br><br>
+                                                                <p class="bg-danger">ይህ የማስታወቂያ ዝርዝር ጥቅል ስለሆነ
+                                                                    ያለተላለፈ ማስታወቂያ ካለ አስተያየት መስጫው ጋ ተዘርዝሮ ይጻፍ</p>
+
+                                                            </div>
+                                                        @endif
+
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endif
+                                    @endforeach
+
+
+
+
+                                    <table class="table table-bordered table-striped table-responsive form-group"
                                        id="user_table">
                                     @csrf
                                     <thead class="table-bordered text-center">
@@ -447,6 +545,8 @@
                                     @foreach($mastawokia as $ms)
                                         @if($ms->program_ken_id == $ken->id && $ms->is_transmit == 0 && $ms->is_artayi_check == 1
                                             &&   $ms->mastawokia_mitelalefbet == 'ጠዋት[12:00-6:00]')
+                                                @if($ms->rmall == null)
+
                                             <tbody>
                                             @if($i++)@endif
                                             <td>{{$i}}</td>
@@ -534,6 +634,7 @@
 
                                             </tbody>
                                         @endif
+                                        @endif
                                     @endforeach
                                 </table>
                         @endif
@@ -583,6 +684,107 @@
                                 ጠዋት[12:00-6:00]
                                 የተሞሉ ፐሮግራሞች ዝርዝር
                             </div>
+
+
+                            {{--if $ms->mastawokia_tekuam == 0 &&  $ms->mastawokia_file == 0 && $ms->mastawokia_gize == 0 && $ms->fmmall != null--}}
+                            @foreach($mastawokia as $ms)
+                                @if($ms->program_ken_id == $ken->id && $ms->is_transmit == 0
+                                    &&   $ms->mastawokia_mitelalefbet == 'ጠዋት[12:00-6:00]')
+                                    @if( $ms->mastawokia_tekuam == 0 &&  $ms->mastawokia_file == 0 && $ms->mastawokia_gize == 0 && $ms->rmall != null)
+                                        <div
+                                            class="card-body table-bordered table-striped table-responsive form-group"
+                                            id="user_table">
+                                            <br>
+                                            <b>ማስታወቂያው ሚተላለፍበት ቀን እና ዕለቱ {{$ms->today_date}}
+                                                ፣{{$ms->programKen->name}}
+                                                ከ {!!  $ms->mastawokia_mitelalefbet!!}</b>
+                                            <p> Updated @ {{$ms->updated_at->diffForHumans()}}
+                                                by {{$ms->updated_by}}</p>
+                                            <p> ማስታወቂያውን የመዘገበው ሰም ፡{{$ms->user->name}}</p>
+
+                                            @if($ms->artayi == null)
+                                                <h4 class="bg-danger text-white">
+                                                    የማስታወቂያው ኃላፊ አላረጋገጠውም ገና በሒደት ላይ ነው
+                                                </h4>
+                                            @else
+                                                <h4>ማስታወቂያውን ያረጋገጠው ሰም ፡ {{$ms->artayi}}</h4>
+                                            @endif
+                                            <b>{!! $ms->rmall !!}</b>
+
+                                            <div class="row">
+                                                @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '10' ||\Illuminate\Support\Facades\Auth::user()->role_id == 9)
+
+                                                    <div class="col-md-3">
+                                                        <a href="{{route('mastawokia-edit-r-formupdate',$ms->id)}}"
+                                                           class="btn-sm btn btn-info  my-2 "> አስተካክል </a>
+                                                        <button class="btn btn-danger btn-sm my-2"
+                                                                onclick="handelDeleteMastawokia({{$ms->id}})">
+                                                            ሰርዝ
+                                                        </button>
+                                                    </div>
+
+                                                @endif
+                                                @if(\Illuminate\Support\Facades\Auth::user()->role_id == 10 )
+                                                    <div class="col-md-2">
+                                                        <form action="{{route('mastawokia-approve-artayi',$ms->id)}}"
+                                                              method="post">
+                                                            @csrf
+                                                            @if($ms->is_artayi_check == 1)
+                                                                አጽድቀሀል
+                                                            @else
+                                                                <button type="submit"
+                                                                        class="btn btn-primary btn-sm my-2">
+                                                                    አጽድቅ
+                                                                </button>
+                                                            @endif
+                                                        </form>
+                                                    </div>
+                                                @endif
+                                                @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '8')
+                                                    <div class="col-md-6 row">
+                                                        <div class="col-md-6">
+                                                            <form
+                                                                action="{{route('mastawokia-approve-tech',$ms->id)}}"
+                                                                method="post">
+                                                                @csrf
+                                                                @if($ms->is_transmit == '0' && $ms->is_artayi_check == '1')
+                                                                    <button type="submit"
+                                                                            class="btn btn-primary btn-sm">
+                                                                        ተላልፏል ብለህ ላክ
+                                                                    </button>
+                                                                @endif
+                                                            </form>
+
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <form
+                                                                action="{{route('mastawokia-approve-tech-not',$ms->id)}}"
+                                                                method="post">
+                                                                @csrf
+                                                                @if($ms->is_transmit == '0' && $ms->not_transmit == '0')
+                                                                    <button type="submit"
+                                                                            class="btn btn-primary btn-sm">
+                                                                        አልተላለፈም ብለህ ላክ
+                                                                    </button>
+                                                                @endif
+                                                            </form>
+                                                        </div>
+                                                        <br><br>
+                                                        <p class="bg-danger">ይህ የማስታወቂያ ዝርዝር ጥቅል ስለሆነ
+                                                            ያለተላለፈ ማስታወቂያ ካለ አስተያየት መስጫው ጋ ተዘርዝሮ ይጻፍ</p>
+
+                                                    </div>
+                                                @endif
+
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
+                            @endforeach
+
+
+
+
                             <table class="table table-bordered table-striped table-responsive form-group"
                                    id="user_table">
                                 @csrf
@@ -609,6 +811,7 @@
                                     @if($ms->program_ken_id == $ken->id && $ms->is_transmit == 0
                                         &&   $ms->mastawokia_mitelalefbet == 'ጠዋት[12:00-6:00]')
                                         {{--                                        <tbody>--}}
+                                        @if($ms->rmall == null)
                                         @if($i++)@endif
                                         <tr class="row1" data-id="{{ $ms->id }}">
                                             <td style="cursor: move">{{$i}}</td>
@@ -625,7 +828,7 @@
                                             <td>{!!  $ms->mastawokia_diggmosh!!}</td>
                                             {{--                                                <td>{!!  $ms->mastawokia_Yetestenagedew_meten!!}</td>--}}
                                             <td>{{$ms->user->name}}</td>
-                                          
+
                                             <td>{{$ms->artayi}}</td>
 
                                             @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '9' ||\Illuminate\Support\Facades\Auth::user()->role_id == 10  )
@@ -667,6 +870,7 @@
                                                 </td>
                                             @endif
                                         </tr>
+                                    @endif
                                     @endif
                                 @endforeach
                                 </tbody>

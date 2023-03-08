@@ -392,7 +392,106 @@
                                     <p class="text-center"> ማስታወቂያ የለም </p>
                                 </div>
                             @else
-                                <table class="table table-bordered table-striped table-responsive form-group"
+
+                                    {{-- start if $ms->mastawokia_tekuam == 0 &&  $ms->mastawokia_file == 0 && $ms->mastawokia_gize == 0 && $ms->fmmall != null--}}
+                                    @foreach($mastawokiafm as $ms)
+                                        @if($ms->program_ken_id == $ken->id && $ms->is_transmit == 0
+                                            &&   $ms->mastawokia_mitelalefbet == 'ቀን[6:00-12:00]')
+                                            @if( $ms->mastawokia_tekuam == 0 &&  $ms->mastawokia_file == 0 && $ms->mastawokia_gize == 0 && $ms->fmmall != null)
+                                                <div
+                                                    class="card-body table-bordered table-striped table-responsive form-group"
+                                                    id="user_table">
+                                                    <br>
+                                                    <b>ማስታወቂያው ሚተላለፍበት ቀን እና ዕለቱ {{$ms->today_date}}
+                                                        ፣{{$ms->programKen->name}}
+                                                        ከ {!!  $ms->mastawokia_mitelalefbet!!}</b>
+                                                    <p> Updated @ {{$ms->updated_at->diffForHumans()}}
+                                                        by {{$ms->updated_by}}</p>
+                                                    <p> ማስታወቂያውን የመዘገበው ሰም ፡{{$ms->user->name}}</p>
+
+                                                    @if($ms->artayi == null)
+                                                        <h4 class="bg-danger text-white">
+                                                            የማስታወቂያው ኃላፊ አላረጋገጠውም ገና በሒደት ላይ ነው
+                                                        </h4>
+                                                    @else
+                                                        <h4>ማስታወቂያውን ያረጋገጠው ሰም ፡ {{$ms->artayi}}</h4>
+                                                    @endif
+                                                    <b>{!! $ms->fmmall !!}</b>
+
+                                                    <div class="row">
+                                                        @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '10' ||\Illuminate\Support\Facades\Auth::user()->role_id == 9)
+
+                                                            <div class="col-md-3">
+                                                                <a href="{{route('mastawokia-edit-fm',$ms->id)}}"
+                                                                   class="btn-sm btn btn-info  my-2 "> አስተካክል </a>
+                                                                <button class="btn btn-danger btn-sm my-2"
+                                                                        onclick="handelDeleteMastawokia({{$ms->id}})">
+                                                                    ሰርዝ
+                                                                </button>
+                                                            </div>
+
+                                                        @endif
+                                                        @if(\Illuminate\Support\Facades\Auth::user()->role_id == 10 )
+                                                            <div class="col-md-1">
+                                                                <form action="{{route('mastawokia-approve-artayi-fm',$ms->id)}}"
+                                                                      method="post">
+                                                                    @csrf
+                                                                    @if($ms->is_artayi_check == 1)
+                                                                        አጽድቀሀል
+                                                                    @else
+                                                                        <button type="submit"
+                                                                                class="btn btn-primary btn-sm my-2 px-2">
+                                                                            አጽድቅ
+                                                                        </button>
+                                                                    @endif
+                                                                </form>
+                                                            </div>
+                                                        @endif
+                                                        @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '8')
+                                                            <div class="col-md-9 row">
+                                                                <div class="col-md-6">
+                                                                    <form
+                                                                        action="{{route('mastawokia-approve-tech-fm',$ms->id)}}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        @if($ms->is_transmit == '0' && $ms->is_artayi_check == '1')
+                                                                            <button type="submit"
+                                                                                    class="btn btn-primary btn-sm">
+                                                                                ተላልፏል ብለህ ላክ
+                                                                            </button>
+                                                                        @endif
+                                                                    </form>
+
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <form
+                                                                        action="{{route('mastawokia-approve-tech-not-fm',$ms->id)}}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        @if($ms->is_transmit == '0' && $ms->not_transmit == '0')
+                                                                            <button type="submit"
+                                                                                    class="btn btn-primary btn-sm">
+                                                                                አልተላለፈም ብለህ ላክ
+                                                                            </button>
+                                                                        @endif
+                                                                    </form>
+                                                                </div>
+                                                                <br><br>
+                                                                <p class="bg-danger">ይህ የማስታወቂያ ዝርዝር ጥቅል ስለሆነ
+                                                                    ያለተላለፈ ማስታወቂያ ካለ አስተያየት መስጫው ጋ ተዘርዝሮ ይጻፍ</p>
+
+                                                            </div>
+                                                        @endif
+
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endif
+                                    @endforeach
+
+                                    {{-- end if $ms->mastawokia_tekuam == 0 &&  $ms->mastawokia_file == 0 && $ms->mastawokia_gize == 0 && $ms->fmmall != null--}}
+
+                                    <table class="table table-bordered table-striped table-responsive form-group"
                                        id="user_table">
                                     @csrf
                                     <thead class="table-bordered text-center">
@@ -415,6 +514,7 @@
                                     @foreach($mastawokiafm as $ms)
                                         @if($ms->program_ken_id == $ken->id && $ms->is_transmit == 0 && $ms->is_artayi_check == 1 && $ms->not_transmit == '0'  &&
                                                $ms->mastawokia_mitelalefbet == 'ቀን[6:00-12:00]')
+                                        @if($ms->fmmall == null)
                                             <tbody>
                                             @if($i++)@endif
                                             <td>{{$i}}</td>
@@ -461,6 +561,7 @@
 
                                             </tbody>
                                         @endif
+                                    @endif
                                     @endforeach
                                 </table>
 
@@ -481,6 +582,73 @@
                             ቀን[6:00-12:00] የተሞሉ
                             ማስታወቂያዎች ዝርዝር
                         </div>
+
+
+                        {{--start if $ms->mastawokia_tekuam == 0 &&  $ms->mastawokia_file == 0 && $ms->mastawokia_gize == 0 && $ms->fmmall != null--}}
+                        @foreach($mastawokiafm as $ms)
+                            @if($ms->program_ken_id == $ken->id && $ms->is_transmit == 0
+                                &&   $ms->mastawokia_mitelalefbet == 'ቀን[6:00-12:00]')
+                                @if( $ms->mastawokia_tekuam == 0 &&  $ms->mastawokia_file == 0 && $ms->mastawokia_gize == 0 && $ms->fmmall != null)
+                                    <div
+                                        class="card-body table-bordered table-striped table-responsive form-group"
+                                        id="user_table">
+                                        <br>
+                                        <b>ማስታወቂያው ሚተላለፍበት ቀን እና ዕለቱ {{$ms->today_date}}
+                                            ፣{{$ms->programKen->name}}
+                                            ከ {!!  $ms->mastawokia_mitelalefbet!!}</b>
+                                        <p> Updated @ {{$ms->updated_at->diffForHumans()}}
+                                            by {{$ms->updated_by}}</p>
+                                        <p> ማስታወቂያውን የመዘገበው ሰም ፡{{$ms->user->name}}</p>
+
+                                        @if($ms->artayi == null)
+                                            <h4 class="bg-danger text-white">
+                                                የማስታወቂያው ኃላፊ አላረጋገጠውም ገና በሒደት ላይ ነው
+                                            </h4>
+                                        @else
+                                            <h4>ማስታወቂያውን ያረጋገጠው ሰም ፡ {{$ms->artayi}}</h4>
+                                        @endif
+                                        <b>{!! $ms->fmmall !!}</b>
+
+                                        <div class="row">
+                                            @if(\Illuminate\Support\Facades\Auth::user()->role_id ==  '10' ||\Illuminate\Support\Facades\Auth::user()->role_id == 9)
+
+                                                <div class="col-md-3">
+                                                    <a href="{{route('mastawokia-edit-fm-formupdate',$ms->id)}}"
+                                                       class="btn-sm btn btn-info  my-2 "> አስተካክል </a>
+                                                    <button class="btn btn-danger btn-sm my-2"
+                                                            onclick="handelDeleteMastawokia({{$ms->id}})">
+                                                        ሰርዝ
+                                                    </button>
+                                                </div>
+
+                                            @endif
+                                            @if(\Illuminate\Support\Facades\Auth::user()->role_id == 10 )
+                                                <div class="col-md-1">
+                                                    <form action="{{route('mastawokia-approve-artayi-fm',$ms->id)}}"
+                                                          method="post">
+                                                        @csrf
+                                                        @if($ms->is_artayi_check == 1)
+                                                            አጽድቀሀል
+                                                        @else
+                                                            <button type="submit"
+                                                                    class="btn btn-primary btn-sm my-2 px-2">
+                                                                አጽድቅ
+                                                            </button>
+                                                        @endif
+                                                    </form>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endif
+                            @endif
+                        @endforeach
+
+                        {{--end if $ms->mastawokia_tekuam == 0 &&  $ms->mastawokia_file == 0 && $ms->mastawokia_gize == 0 && $ms->fmmall != null--}}
+
+
+
+
                         <table class="table table-bordered table-striped table-responsive form-group"
                                id="user_table">
                             @csrf
@@ -506,7 +674,7 @@
                             @foreach($mastawokiafm as $ms)
                                 @if($ms->program_ken_id == $ken->id && $ms->is_transmit == 0 && $ms->not_transmit == '0' &&
                                        $ms->mastawokia_mitelalefbet == 'ቀን[6:00-12:00]')
-
+                                    @if($ms->fmmall == null)
                                     @if($i++)@endif
                                     <tr class="row1" data-id="{{ $ms->id }}">
                                         <td style="cursor: move">{{$i}}</td>
@@ -554,6 +722,7 @@
                                         @endif
 
                                     </tr>
+                                    @endif
                                 @endif
                             @endforeach
                             </tbody>

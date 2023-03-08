@@ -23,6 +23,13 @@
                         @csrf
                         <span id="result"></span>
                         <div class="card-body">
+
+                            <div class="float-right">
+                                <a href={{route('mastawokia-create-formnew-fm')}} type="submit" class="btn btn-danger ">
+                                    አማራጭ መመዝገቢያ
+                                </a>
+                            </div>
+
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label for="today_date"

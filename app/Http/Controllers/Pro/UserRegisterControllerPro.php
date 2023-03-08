@@ -24,7 +24,7 @@ class UserRegisterControllerPro extends Controller
     }
     public function registerUserFormPro()
     {
-        if (Auth::user()->id == 9) {
+        if (auth()->user()->role->id == 9) {
             session()->flash('error', 'You are not allowed to access this page. ');
             return redirect(route('home'));
         }
@@ -35,7 +35,7 @@ class UserRegisterControllerPro extends Controller
 
     public function registerCreatePro(Request $request)
     {
-        if (Auth::user()->id == 9) {
+        if (auth()->user()->role->id == 9) {
             session()->flash('error', 'You are not allowed to access this page. ');
             return redirect(route('home'));
         }
@@ -62,7 +62,7 @@ class UserRegisterControllerPro extends Controller
     }
     public function userEditPro($id)
     {
-        if (Auth::user()->id == 9) {
+        if (auth()->user()->role->id == 9) {
             session()->flash('error', 'You are not allowed to access this page. ');
             return redirect(route('home'));
         }
@@ -76,7 +76,7 @@ class UserRegisterControllerPro extends Controller
 
     public function userUpdatePro(Request $request, $id)
     {
-        if (Auth::user()->id == 9) {
+        if (auth()->user()->role->id == 9){
             session()->flash('error', 'You are not allowed to access this page. ');
             return redirect(route('home'));
         }
@@ -105,7 +105,7 @@ class UserRegisterControllerPro extends Controller
 
     public function userDeletePro($id)
     {
-        if (Auth::user()->id == 9) {
+        if (auth()->user()->role->id == 9) {
             session()->flash('error', 'You are not allowed to access this page. ');
             return redirect(route('home'));
         }

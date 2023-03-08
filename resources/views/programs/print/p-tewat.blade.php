@@ -292,7 +292,42 @@
                                 ማስታወቂያዎች ዝርዝር ቀን {{$ms->today_date}}
                             </div>
 
-                            <table class="table table-bordered table-striped table-responsive form-group"
+
+
+                                    {{--if $ms->mastawokia_tekuam == 0 &&  $ms->mastawokia_file == 0 && $ms->mastawokia_gize == 0 && $ms->fmmall != null--}}
+                                    @foreach($mastawokia as $ms)
+                                        @if($ms->program_ken_id == $ken->id && $ms->is_transmit == 0
+                                            &&   $ms->mastawokia_mitelalefbet == 'ጠዋት[12:00-6:00]')
+                                            @if( $ms->mastawokia_tekuam == 0 &&  $ms->mastawokia_file == 0 && $ms->mastawokia_gize == 0 && $ms->rmall != null)
+                                                <div
+                                                    class="card-body table-bordered table-striped table-responsive form-group"
+                                                    id="user_table">
+                                                    <br>
+                                                    <b>ማስታወቂያው ሚተላለፍበት ቀን እና ዕለቱ {{$ms->today_date}}
+                                                        ፣{{$ms->programKen->name}}
+                                                        ከ {!!  $ms->mastawokia_mitelalefbet!!}</b>
+                                                    <p> Updated @ {{$ms->updated_at->diffForHumans()}}
+                                                        by {{$ms->updated_by}}</p>
+                                                    <p> ማስታወቂያውን የመዘገበው ሰም ፡{{$ms->user->name}}</p>
+
+                                                    @if($ms->artayi == null)
+                                                        <h4 class="bg-danger text-white">
+                                                            የማስታወቂያው ኃላፊ አላረጋገጠውም ገና በሒደት ላይ ነው
+                                                        </h4>
+                                                    @else
+                                                        <h4>ማስታወቂያውን ያረጋገጠው ሰም ፡ {{$ms->artayi}}</h4>
+                                                    @endif
+                                                    <b>{!! $ms->rmall !!}</b>
+                                                </div>
+                                            @endif
+                                        @endif
+                                    @endforeach
+
+
+
+
+
+                                    <table class="table table-bordered table-striped table-responsive form-group"
                                    id="user_table">
                                 @csrf
                                 <thead class="table-bordered text-center">
@@ -315,6 +350,7 @@
                                 @foreach($mastawokia as $ms)
                                     @if($ms->program_ken_id == $ken->id && $ms->is_transmit == 0
                                         &&   $ms->mastawokia_mitelalefbet == 'ጠዋት[12:00-6:00]')
+                                        @if($ms->rmall == null)
                                         <tbody>
                                         @if($i++)@endif
                                         <td>{{$i}}</td>
@@ -330,6 +366,7 @@
                                         <td>{{$ms->user->name}}</td>
                                         <td>{{$ms->artayi}}</td>
                                         </tbody>
+                                    @endif
                                     @endif
                                 @endforeach
                             </table>
